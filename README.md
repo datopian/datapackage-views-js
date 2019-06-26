@@ -5,8 +5,8 @@ Welcome to datapackage-views-js, a views library for frictionless data and ckan 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 More [below](https://github.com/datopian/datapackage-views-js/blob/master/README.md#cra)
 
-`yarn start` will compile tailwind css, run the app at `localhost:3000`, and watch for changes in your source files (hot reload)
-`yarn dev` will compile tailwind css, run the app at `localhost:3000`, run cosmos at `localhost:8989`, and watch for changes
+- `yarn start` will compile tailwind css, run the app at `localhost:3000`, and watch for changes in your source files (hot reload)
+- `yarn dev` will compile tailwind css, run the app at `localhost:3000`, run cosmos at `localhost:8989`, and watch for changes
 
 **To see the app populated with views run `yarn dev` and visit `localhost:8989`**
 
@@ -14,8 +14,8 @@ More [below](https://github.com/datopian/datapackage-views-js/blob/master/README
 We are using [cosmos](https://github.com/react-cosmos/) to mock datasets and test components.
 
 To run cosmos:
-`yarn install`
-`yarn cosmos`
+- `yarn install`
+- `yarn cosmos`
 
 [Add fixtures](https://github.com/react-cosmos/react-cosmos#fixtures) to `./__fixtures`
 
