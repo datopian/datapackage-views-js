@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Table from './Table.js';
+
+const data = [
+  ['', 'Tesla', 'Mercedes', 'Toyota', 'Volvo'],
+  ['2019', 10, 11, 12, 13],
+  ['2020', 20, 11, 14, 13],
+  ['2021', 30, 15, 12, 13],
+];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="h-6 bg-gray-300">
+        <h1>Datapackage Views</h1>
       </header>
+      <body>
+        <div className="container m-24">
+          <Table data={data} key="non-commercial-and-evaluation"/>
+        </div>
+      </body>
     </div>
   );
 }
