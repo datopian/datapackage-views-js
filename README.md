@@ -8,9 +8,7 @@ More [below]('#cra')
 `yarn start` will compile tailwind css, run the app at `localhost:3000`, and watch for changes in your source files (hot reload)
 `yarn dev` will compile tailwind css, run the app at `localhost:3000`, run cosmos at `localhost:8989`, and watch for changes
 
-:::note
-To see the app populated with views run `yarn dev` and visit `localhost:8989`
-:::
+**To see the app populated with views run `yarn dev` and visit `localhost:8989`**
 
 ## cosmos
 We are using [cosmos](https://github.com/react-cosmos/) to mock datasets and test components.
