@@ -17,6 +17,7 @@ To run cosmos:
 
 [Add fixtures](https://github.com/react-cosmos/react-cosmos#fixtures) to `./__fixtures`
 
+To generate fixtures run `yarn fixtures`
 ## tailwindcss
 We are using tailwindcss for styling. More on [tailwind css here](https://tailwindcss.com/)
 

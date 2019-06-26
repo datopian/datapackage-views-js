@@ -15,7 +15,8 @@
     "watch:css": "postcss src/stylesheets/index.css -o src/index.css -w",
     "build:css": "postcss src/stylesheets/index.css -o src/index.css",
     "start": "npm run watch:css & react-scripts start",
-    "dev": "npm run watch:css & react-scripts start & npm run cosmos",
+    "dev": "npm run fixtures && npm run watch:css & react-scripts start & npm run cosmos",
+    "fixtures": "node makedatasets.js",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.6.0",
+    "data.js": "^0.12.6",
     "postcss-cli": "^6.1.2",
     "react-cosmos": "^4.8.1",
     "tailwindcss": "^1.0.4"
