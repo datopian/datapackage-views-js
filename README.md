@@ -20,7 +20,7 @@ To run cosmos:
 [Add fixtures](https://github.com/react-cosmos/react-cosmos#fixtures) to `./__fixtures`
 
 To generate fixtures run `yarn fixtures`.
-This will run [makedatasets.js](https://github.com/datopian/datapackage-views-js/blob/master/makedatasets.js) which uses [data.js](#) to generate `package.json` files used as App fixtures by cosmos.
+This will run [makedatasets.js](https://github.com/datopian/datapackage-views-js/blob/master/makedatasets.js) which uses [data.js](#) to generate `datapackage.json` files used as App fixtures by cosmos.
 
 ## tailwindcss
 We are using tailwindcss for styling. More on [tailwind css here](https://tailwindcss.com/)
