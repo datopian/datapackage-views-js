@@ -10,12 +10,12 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "cosmos": "cosmos",
+    "cosmos": "npm run fixtures && cosmos",
     "cosmos:export": "cosmos-export",
     "watch:css": "postcss src/stylesheets/index.css -o src/index.css -w",
     "build:css": "postcss src/stylesheets/index.css -o src/index.css",
     "start": "npm run watch:css & react-scripts start",
-    "dev": "npm run fixtures && npm run watch:css & react-scripts start & npm run cosmos",
+    "dev": "npm run watch:css & react-scripts start & npm run cosmos",
     "fixtures": "node makedatasets.js",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
