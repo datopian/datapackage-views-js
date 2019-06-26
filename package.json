@@ -10,10 +10,13 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
+    "cosmos": "cosmos",
+    "cosmos:export": "cosmos-export",
     "watch:css": "postcss src/stylesheets/index.css -o src/index.css -w",
     "build:css": "postcss src/stylesheets/index.css -o src/index.css",
-    "start": "npm run watch:css react-scripts start",
-    "build": "npm run build:css react-scripts build",
+    "start": "npm run watch:css & react-scripts start",
+    "dev": "npm run watch:css & react-scripts start & npm run cosmos",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
