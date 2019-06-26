@@ -3,7 +3,7 @@ Welcome to datapackage-views-js, a views library for frictionless data and ckan 
 
 ## Development
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)i.
-More [below]('#cra')
+More [below](https://github.com/datopian/datapackage-views-js/blob/master/README.md#cra)
 
 `yarn start` will compile tailwind css, run the app at `localhost:3000`, and watch for changes in your source files (hot reload)
 `yarn dev` will compile tailwind css, run the app at `localhost:3000`, run cosmos at `localhost:8989`, and watch for changes
