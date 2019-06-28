@@ -1,21 +1,22 @@
 import React from "react"
 import "./App.css"
 import Table from "./Table.js"
+import {handsOnTableToHandsOnTable} from 'datapackage-render'
 
-async function App(props) {
-  let data = props.view ? props.view.resources[0].data : []
+function App(props) {
+  let _data = props.view ? props.view.resources[0].data : []
   let view = props.view || {} // default to single table view
-
+  if (view.resources) view.resources[0]._values =  _data
+  let {data, ...options} = handsOnTableToHandsOnTable(view)
   let renderedView = <p>Data view unavailable</p>
+  console.log(_data, data, view, props)
+
   if (view.specType === "table" || !view.specType) {
-    renderedView = <Table data={data} />
+    renderedView = <Table data={data} options={options} />
   }
 
   return (
     <div className="App">
-      <header className="h-6 bg-gray-300">
-        <h1>Datapackage Views</h1>
-      </header>
       <div className="container m-24">{renderedView}</div>
     </div>
   )

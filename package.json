@@ -5,7 +5,7 @@
   "dependencies": {
     "@handsontable/react": "^3.0.0",
     "data.js": "^0.12.7",
-    "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
+    "datapackage-render": "^0.2.0",
     "handsontable": "^7.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
