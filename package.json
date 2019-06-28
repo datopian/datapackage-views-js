@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@handsontable/react": "^3.0.0",
+    "data.js": "^0.12.7",
+    "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -38,7 +40,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.6.0",
-    "data.js": "^0.12.6",
     "postcss-cli": "^6.1.2",
     "react-cosmos": "^4.8.1",
     "tailwindcss": "^1.0.4"
