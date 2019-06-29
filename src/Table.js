@@ -1,5 +1,6 @@
 import React from "react"
 import { HotTable } from "@handsontable/react"
+import "./Table.css"
 
 export default function(props) {
   const settings = Object.assign({}, props.options, {
