@@ -9,7 +9,6 @@ function App(props) {
   if (view.resources) view.resources[0]._values =  _data
   let {data, ...options} = handsOnTableToHandsOnTable(view)
   let renderedView = <p>Data view unavailable</p>
-  console.log(_data, data, view, props)
 
   if (view.specType === "table" || !view.specType) {
     renderedView = <Table data={data} options={options} />

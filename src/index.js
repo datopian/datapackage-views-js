@@ -11,7 +11,7 @@ const toArray = require("stream-to-array")
 const instances = document.getElementsByClassName('react-me-datapackage-views')
 function parseDatapackageIdentifier(stringOrJSON) {
   try {
-    return JSON.parse(stringOrJSON)  
+    return JSON.parse(stringOrJSON)
   } catch (e) {
     return stringOrJSON
   }
@@ -26,7 +26,7 @@ for (const instance of instances) {
     // Convert remote file into inline file
     await Promise.all(dataset.resources.map(async (file) => {
       if (file.displayName === "FileRemote") {
-        const rowStream = await file.rows({size: 20})
+        const rowStream = await file.rows({size: 100, keyed: true})
         const data = await toArray(rowStream)
         file.descriptor.data = data // This makes it FileInline
       }
