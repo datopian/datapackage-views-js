@@ -24,22 +24,22 @@ for (const instance of instances) {
   Dataset.load(DP_ID).then(async (dataset) => {
     // TODO: support local files
     // Convert remote file into inline file
-    await Promise.all(dataset.resources.map(async (file) => {
+    dataset.resources.map(async (file) => {
       const tabularFormats = ['csv', 'tsv', 'dsv', 'xls', 'xlsx']
       if (file.displayName === "FileRemote" && tabularFormats.includes(file.descriptor.format)) {
         const rowStream = await file.rows({size: 100, keyed: true})
         const data = await toArray(rowStream)
         file.descriptor.data = data // This makes it FileInline
       }
-    }))
 
-    // Compile views and render App
-    dataset.descriptor.views.forEach(view => {
-      const compiledView = dpRender.compileView(view, dataset.descriptor)
-      ReactDOM.render(
-        <App view={compiledView} />,
-        document.getElementById(`datapackage-view-${view.id}`)
-      )
+      // Compile views and render App
+      dataset.descriptor.views.forEach(view => {
+        const compiledView = dpRender.compileView(view, dataset.descriptor)
+        ReactDOM.render(
+          <App view={compiledView} />,
+          document.getElementById(`datapackage-view-${view.id}`)
+        )
+      })
     })
   })
 }
