@@ -5,7 +5,7 @@
   "dependencies": {
     "@handsontable/react": "^3.0.0",
     "data.js": "^0.12.7",
-    "datapackage-render": "^0.2.0",
+    "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -20,6 +20,7 @@
     "dev": "npm run watch:css & react-scripts start & npm run cosmos",
     "fixtures": "node makedatasets.js",
     "build": "npm run build:css && react-scripts build",
+    "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js && mv build/static/js/*.map dist/js/main.js.map",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,6 +43,7 @@
     "autoprefixer": "^9.6.0",
     "postcss-cli": "^6.1.2",
     "react-cosmos": "^4.8.1",
+    "rewire": "^4.0.1",
     "tailwindcss": "^1.0.4"
   }
 }
