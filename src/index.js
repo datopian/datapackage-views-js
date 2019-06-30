@@ -25,7 +25,8 @@ for (const instance of instances) {
     // TODO: support local files
     // Convert remote file into inline file
     await Promise.all(dataset.resources.map(async (file) => {
-      if (file.displayName === "FileRemote") {
+      const tabularFormats = ['csv', 'tsv', 'dsv', 'xls', 'xlsx']
+      if (file.displayName === "FileRemote" && tabularFormats.includes(file.descriptor.format)) {
         const rowStream = await file.rows({size: 100, keyed: true})
         const data = await toArray(rowStream)
         file.descriptor.data = data // This makes it FileInline
