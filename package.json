@@ -1,10 +1,10 @@
 {
   "name": "datapackage-views-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "@handsontable/react": "^3.0.0",
-    "data.js": "^0.12.7",
+    "data.js": "^0.12.8",
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
     "react": "^16.8.6",
