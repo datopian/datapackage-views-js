@@ -20,6 +20,15 @@ function App(props) {
         <div className="container m-24">{renderedView}</div>
       </div>
     )
+  } else if (props.view.resources[0].unavailable) {
+    return (
+      <div className="App">
+        <div className="container m-24">
+          <p>Data view unavailable.</p>
+          <a href={props.view.resources[0].path}>Download the data.</a>
+        </div>
+      </div>
+    )
   } else {
     return (
       <div className="App">
