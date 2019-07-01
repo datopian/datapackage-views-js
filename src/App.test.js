@@ -45,5 +45,5 @@ it('renders a preview table when data is loaded', () => {
     ]
   }
   const { container } = render(<App view={compiledView} />)
-  expect(container.firstChild).toMatchSnapshot()
+  expect(container.querySelector('table.htCore')).toMatchSnapshot()
 })
