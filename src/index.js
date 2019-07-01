@@ -48,6 +48,10 @@ for (const instance of instances) {
           console.log(e)
           file.descriptor.unavailable = true
         }
+      } else {
+        // TODO: we can't load any other data types for now. We want to include
+        // support for GeoJSON and PDF.
+        file.descriptor.unavailable = true
       }
 
       // Compile views and render App
