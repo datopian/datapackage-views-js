@@ -21,7 +21,7 @@
     "fixtures": "node makedatasets.js",
     "build": "npm run build:css && react-scripts build",
     "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js && mv build/static/js/*.map dist/js/main.js.map",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
