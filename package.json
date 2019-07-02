@@ -21,7 +21,7 @@
     "fixtures": "node makedatasets.js",
     "build": "npm run build:css && react-scripts build",
     "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js && mv build/static/js/*.map dist/js/main.js.map",
-    "test": "react-scripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js",
+    "test": "react-scripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js && npx make-coverage-badge",
     "test:watch": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,9 +44,15 @@
     "@testing-library/react": "^8.0.4",
     "autoprefixer": "^9.6.0",
     "jest-dom": "^3.5.0",
+    "make-coverage-badge": "^1.1.1",
     "postcss-cli": "^6.1.2",
     "react-cosmos": "^4.8.1",
     "rewire": "^4.0.1",
     "tailwindcss": "^1.0.4"
+  },
+  "jest": {
+    "coverageReporters": [
+      "json-summary"
+    ]
   }
 }
