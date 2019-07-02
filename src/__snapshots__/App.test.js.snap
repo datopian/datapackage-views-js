@@ -4,13 +4,44 @@ exports[`renders a preview table when data is loaded 1`] = `
 <table
   class="htCore"
 >
-  <colgroup />
+  <colgroup>
+    <col
+      style="width: 47px;"
+    />
+  </colgroup>
   <thead>
-    <tr />
+    <tr>
+      <th
+        class=""
+        title="a"
+      >
+        <div
+          class="relative"
+        >
+          <span
+            class="colHeader columnSorting sortAction"
+          >
+            a
+          </span>
+        </div>
+      </th>
+    </tr>
   </thead>
   <tbody>
-    <tr />
-    <tr />
+    <tr>
+      <td
+        class="htDimmed"
+      >
+        1
+      </td>
+    </tr>
+    <tr>
+      <td
+        class="htDimmed"
+      >
+        3
+      </td>
+    </tr>
   </tbody>
 </table>
 `;

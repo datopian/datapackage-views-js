@@ -3069,8 +3069,8 @@ data.js@^0.12.8:
     xlsx "^0.14.3"
 
 "datapackage-render@git+https://github.com/frictionlessdata/datapackage-render-js.git":
-  version "0.3.6"
-  resolved "git+https://github.com/frictionlessdata/datapackage-render-js.git#c71392afefea2d0e34e6cd8781d49aedb8d1787f"
+  version "0.3.7"
+  resolved "git+https://github.com/frictionlessdata/datapackage-render-js.git#b7cfbbb09f68e7063e7a48901b9e677b4d7d314c"
   dependencies:
     lodash "^4.0.0"
 
