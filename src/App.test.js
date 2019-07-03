@@ -47,3 +47,26 @@ it('renders a preview table when data is loaded', () => {
   const { container } = render(<App view={compiledView} />)
   expect(container.querySelector('table.htCore')).toMatchSnapshot()
 })
+
+it('renders a Map for geojson resources', () => {
+  const compiledView = JSON.parse(JSON.stringify(view))
+  compiledView.specType = 'map'
+  compiledView.resources[0] = {
+    name: 'map',
+    data: {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.6,
+          10.1
+        ]
+      },
+      "properties": {
+        "name": "Dinagat Islands"
+      }
+    }
+  }
+  const { container } = render(<App view={compiledView} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
