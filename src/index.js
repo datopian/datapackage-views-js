@@ -24,9 +24,9 @@ for (const instance of instances) {
   Dataset.load(DP_ID).then(async (dataset) => {
     const tabularFormats = ['csv', 'tsv', 'dsv', 'xls', 'xlsx']
     // TODO: support local files
-    // Convert remote file into inline file
+    // Data fetcher
     dataset.resources.forEach(async (file) => {
-      // Handle datastore resource, e.g., when a path is a 'datastore_search' API
+      // Datastore, e.g., when a path is a 'datastore_search' API
       if (file.descriptor.path && file.descriptor.path.includes('datastore_search')) {
         const response = await fetch(file.descriptor.path)
         if (!response.ok) {
@@ -36,6 +36,7 @@ for (const instance of instances) {
         const result = await response.json()
         file.descriptor.data = result.result.records
       } else if (file.displayName === "FileRemote" && tabularFormats.includes(file.descriptor.format)) {
+        // Tabular data
         try {
           const rowStream = await file.rows({size: 100, keyed: true})
           const data = await toArray(rowStream)
@@ -48,21 +49,49 @@ for (const instance of instances) {
           console.log(e)
           file.descriptor.unavailable = true
         }
+      } else if (file.descriptor.format.toLowerCase().includes('json')) {
+        // Geographical data
+        const response = await fetch(file.descriptor.path)
+        if (!response.ok) {
+          file.descriptor.unavailable = true
+          return
+        }
+        const result = await response.json()
+        // The '.json' files can contain geo data - check by its 'type' property
+        const geoJsonTypes = [
+          'Feature', 'FeatureCollection', 'Point', 'MultiPoint', 'LineString',
+          'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'
+        ]
+        if (geoJsonTypes.includes(result.type)) {
+          file.descriptor.data = result
+        } else {
+          // It isn't a valid GeoJSON
+          file.descriptor.unavailable = true
+          return
+        }
       } else {
         // TODO: we can't load any other data types for now. We want to include
-        // support for GeoJSON and PDF.
+        // support for PDF.
         file.descriptor.unavailable = true
       }
 
       // Compile views and render App
-      dataset.descriptor.views.forEach(view => {
-        const compiledView = dpRender.compileView(view, dataset.descriptor)
-        ReactDOM.render(
-          <App view={compiledView} />,
-          document.getElementById(`datapackage-view-${view.id}`)
-        )
-      })
+      render(dataset.descriptor)
     })
+
+    // Compile views and render App
+    render(dataset.descriptor)
+  })
+}
+
+function render(descriptor) {
+  // Compile views and render App
+  descriptor.views.forEach(view => {
+    const compiledView = dpRender.compileView(view, descriptor)
+    ReactDOM.render(
+      <App view={compiledView} />,
+      document.getElementById(`datapackage-view-${view.id}`)
+    )
   })
 }
 // If you want your app to work offline and load faster, you can change
