@@ -7,8 +7,10 @@
     "data.js": "^0.12.8",
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
+    "leaflet": "^1.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-leaflet": "^2.4.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {

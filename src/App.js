@@ -1,6 +1,7 @@
 import React from "react"
 import "./App.css"
 import Table from "./Table.js"
+import Map from './Map.js'
 import {handsOnTableToHandsOnTable} from 'datapackage-render'
 
 function App(props) {
@@ -18,6 +19,14 @@ function App(props) {
     return (
       <div className="App">
         <div className="container m-24">{renderedView}</div>
+      </div>
+    )
+  } else if (_data && _data.type && props.view.specType === 'map') {
+    return (
+      <div className="App">
+        <div className="container m-24">
+          <Map featureCollection={_data} />
+        </div>
       </div>
     )
   } else if (props.view.resources[0].unavailable) {
