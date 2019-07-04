@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders a Document for PDF resources 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div>
+      <span>
+        Loading...
+      </span>
+      <canvas />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders a Map for geojson resources 1`] = `
 <div
   class="App"

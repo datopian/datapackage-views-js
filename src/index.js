@@ -69,13 +69,16 @@ for (const instance of instances) {
           file.descriptor.unavailable = true
           return
         }
+      } else if (file.descriptor.format.toLowerCase() === 'pdf') {
+        return
       } else {
-        // TODO: we can't load any other data types for now. We want to include
-        // support for PDF.
+        // We can't load any other data types for now.
         file.descriptor.unavailable = true
       }
 
-      // Compile views and render App
+      // Compile views and render App. Calling this here so components are
+      // re-rendered after each loop so users can see a preview as soon as
+      // it's available. Useful when you have lots of views to render.
       render(dataset.descriptor)
     })
 

@@ -2,6 +2,7 @@ import React from "react"
 import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
+import PdfViewer from './Document.js'
 import {handsOnTableToHandsOnTable} from 'datapackage-render'
 
 function App(props) {
@@ -26,6 +27,14 @@ function App(props) {
       <div className="App">
         <div className="container m-24">
           <Map featureCollection={_data} />
+        </div>
+      </div>
+    )
+  } else if (props.view.specType === 'document') {
+    return (
+      <div className="App">
+        <div className="container m-24">
+          <PdfViewer file={props.view.resources[0].path} />
         </div>
       </div>
     )

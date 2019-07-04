@@ -70,3 +70,15 @@ it('renders a Map for geojson resources', () => {
   const { container } = render(<App view={compiledView} />)
   expect(container.firstChild).toMatchSnapshot()
 })
+
+it('renders a Document for PDF resources', () => {
+  const compiledView = JSON.parse(JSON.stringify(view))
+  compiledView.specType = 'document'
+  compiledView.resources[0] = {
+    name: 'document',
+    format: 'pdf',
+    path: 'some-path-to-pdf'
+  }
+  const { container } = render(<App view={compiledView} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
