@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist/js/main.js.map
 
 # misc
 .DS_Store

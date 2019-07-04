@@ -85,6 +85,9 @@ for (const instance of instances) {
     // Compile views and render App
     render(dataset.descriptor)
   })
+  .catch((error) => {
+    console.warn('Failed to load a Dataset from provided datapackage id\n' + error)
+  })
 }
 
 function render(descriptor) {
