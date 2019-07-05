@@ -26,8 +26,10 @@ for (const instance of instances) {
     // TODO: support local files
     // Data fetcher
     dataset.resources.forEach(async (file) => {
-      // Datastore, e.g., when a path is a 'datastore_search' API
-      if (file.descriptor.path && file.descriptor.path.includes('datastore_search')) {
+      if (file.displayName === 'FileInline') {
+        return
+      } else if (file.descriptor.path && file.descriptor.path.includes('datastore_search')) {
+        // Datastore, e.g., when a path is a 'datastore_search' API
         const response = await fetch(file.descriptor.path)
         if (!response.ok) {
           file.descriptor.unavailable = true
