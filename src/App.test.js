@@ -6,7 +6,6 @@ import App from './App';
 
 const view = {
   'id': 1,
-  'elementId': 'root',
   'title': 'GDP',
   'resources': [
     'gdp'
@@ -43,6 +42,25 @@ it('renders a preview table when data is loaded', () => {
       {a:1, b:2},
       {a:3, b:4}
     ]
+  }
+  const { container } = render(<App view={compiledView} />)
+  expect(container.querySelector('table.htCore')).toMatchSnapshot()
+})
+
+it('renders a preview table with custom headers', () => {
+  const compiledView = JSON.parse(JSON.stringify(view))
+  compiledView.resources[0] = {
+    name: 'gdp',
+    data: [
+      {a:1, b:2},
+      {a:3, b:4}
+    ],
+    schema: {
+      fields: [
+        {name: 'a', title: 'custom-a'},
+        {name: 'b', title: 'custom-b'}
+      ]
+    }
   }
   const { container } = render(<App view={compiledView} />)
   expect(container.querySelector('table.htCore')).toMatchSnapshot()
