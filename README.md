@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/datopian/datapackage-views-js.svg?branch=master)](https://travis-ci.org/datopian/datapackage-views-js)
+[![Build Status](https://travis-ci.org/datopian/datapackage-views-js.svg?branch=master)](https://travis-ci.org/datopian/datapackage-views-js)  [![Coverage Status](https://coveralls.io/repos/github/datopian/datapackage-views-js/badge.svg?branch=master)](https://coveralls.io/github/datopian/datapackage-views-js?branch=master)
 
 # datapackage-views-js
 Welcome to datapackage-views-js, a views library for frictionless data and ckan data resources.
