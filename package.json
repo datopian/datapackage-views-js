@@ -23,7 +23,7 @@
     "dev": "npm run watch:css & react-scripts start & npm run cosmos",
     "build": "npm run build:css && react-scripts build",
     "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js",
-    "test": "rescripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js",
+    "test": "rescripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js | coveralls",
     "test:watch": "rescripts test",
     "eject": "react-scripts eject"
   },
@@ -46,6 +46,7 @@
     "@rescripts/cli": "^0.0.11",
     "@testing-library/react": "^8.0.4",
     "autoprefixer": "^9.6.0",
+    "coveralls": "^3.0.4",
     "jest-dom": "^3.5.0",
     "postcss-cli": "^6.1.2",
     "react-cosmos": "^4.8.1",
