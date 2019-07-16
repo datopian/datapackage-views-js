@@ -15,7 +15,7 @@ function App(props) {
     return (
       <div className="App">
         <div className="container m-24">
-          <Table data={data} options={options} />
+          <Table data={data} options={options} ref={(table) => {window[`table${view.id}`] = table}} />
         </div>
       </div>
     )
