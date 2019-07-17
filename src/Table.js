@@ -54,6 +54,7 @@ export default class Table extends React.Component {
     return (
       <div>
         <div className="downloadables">
+          <span>Download preview data:</span>
           <CSVLink
             data={this.state.data}
             headers={this.state.settings.colHeaders}

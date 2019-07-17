@@ -4,10 +4,11 @@ import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
 import {handsOnTableToHandsOnTable} from 'datapackage-render'
+import Loader from 'react-loader-spinner'
 
 function App(props) {
   let _data = props.view ? props.view.resources[0].data : null
-  
+
   if (props.view.specType === 'table' && _data) {
     let view = props.view || {} // default to single table view
     if (view.resources) view.resources[0]._values =  _data
@@ -47,7 +48,14 @@ function App(props) {
   } else {
     return (
       <div className="App">
-        <div className="container m-24"><p>Data view is loading</p></div>
+        <div className="container m-24">
+          <Loader
+             type="Grid"
+             color="#D3D3D3"
+             height="50"
+             width="50"
+          />
+        </div>
       </div>
     )
   }

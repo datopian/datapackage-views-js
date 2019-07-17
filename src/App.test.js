@@ -19,9 +19,9 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div)
 });
 
-it('renders loading message', () => {
-  const { getByText } = render(<App view={view} />)
-  expect(getByText('Data view is loading')).toBeInTheDocument()
+it('renders spinner', () => {
+  const { container } = render(<App view={view} />)
+  expect(container.querySelector('svg')).toMatchSnapshot()
 });
 
 it('renders error message when data is unavailable', () => {

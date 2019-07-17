@@ -1,6 +1,6 @@
 {
   "name": "datapackage-views-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "dependencies": {
     "@handsontable/react": "^3.0.0",
@@ -12,6 +12,7 @@
     "react-csv": "^1.1.1",
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.4.0",
+    "react-loader-spinner": "^2.3.0",
     "react-pdf-js": "^5.1.0",
     "react-scripts": "3.0.1"
   },
