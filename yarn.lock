@@ -8137,6 +8137,10 @@ react-cosmos@^4.8.1:
     webpack-hot-middleware "^2.24.3"
     yargs "^12.0.5"
 
+react-csv@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-1.1.1.tgz#718dadd2607a1795bfc8dbd32ca282a043739634"
+
 react-dev-utils@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-6.1.1.tgz#a07e3e8923c4609d9f27e5af5207e3ca20724895"
