@@ -1,22 +1,48 @@
 import App from '../src/App.js'
 
-const view = {
-  "id": 1,
-  "resources": [
+const datapackage = {
+  "views": [
     {
-      "name": "test",
-      "data": [
-        ["a", "b", "c", "d"],
-        [1, 2, 3, 4],
-        [2, 3, 4, 5],
-        [3, 4, 5, 6]
-      ]
+      "id": 1,
+      "resources": [
+        {
+          "name": "test",
+          "data": [
+            [
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              2,
+              3,
+              4,
+              5
+            ],
+            [
+              3,
+              4,
+              5,
+              6
+            ]
+          ]
+        }
+      ],
+      "specType": "table"
     }
-  ],
-  "specType": "table"
+  ]
 }
+
+const loading = false
 
 export default {
   component: App,
-  props: {view}
+  props: {datapackage, loading}
 };
