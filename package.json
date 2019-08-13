@@ -1,7 +1,9 @@
 {
   "name": "datapackage-views-js",
   "version": "0.0.8",
-  "private": true,
+  "private": false,
+  "main": "/dist/App.js",
+  "module": "/dist/App.js",
   "dependencies": {
     "@handsontable/react": "^3.0.0",
     "data.js": "^0.12.8",
@@ -25,10 +27,18 @@
     "dev": "npm run watch:css & react-scripts start & npm run cosmos",
     "build": "npm run build:css && react-scripts build",
     "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js",
+    "build:package": "rm -rf dist/ && mkdir dist && NODE_ENV=production npx babel src/ -d dist/ --copy-files",
     "coverage": "cat coverage/lcov.info | coveralls",
     "test": "rescripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js && npm run coverage",
     "test:watch": "rescripts test",
     "eject": "react-scripts eject"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +56,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "@rescripts/cli": "^0.0.11",
     "@testing-library/react": "^8.0.4",
     "autoprefixer": "^9.6.0",
