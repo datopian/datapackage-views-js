@@ -10,12 +10,14 @@
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
     "leaflet": "^1.5.1",
+    "plotly.js-basic-dist": "^1.49.2",
     "react": "^16.8.6",
     "react-csv": "^1.1.1",
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.4.0",
     "react-loader-spinner": "^2.3.0",
     "react-pdf-js": "^5.1.0",
+    "react-plotly.js": "^2.3.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -38,7 +40,9 @@
       "@babel/preset-env",
       "@babel/preset-react"
     ],
-    "plugins": ["@babel/plugin-proposal-class-properties"]
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

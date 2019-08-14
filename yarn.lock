@@ -7435,6 +7435,10 @@ pkg-up@2.0.0:
   dependencies:
     find-up "^2.1.0"
 
+plotly.js-basic-dist@^1.49.2:
+  version "1.49.2"
+  resolved "https://registry.yarnpkg.com/plotly.js-basic-dist/-/plotly.js-basic-dist-1.49.2.tgz#c2a69dc0dffacb7bfee7675848c851bce878dedb"
+
 pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
@@ -8168,7 +8172,7 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
-prop-types@^15.6.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   dependencies:
@@ -8604,6 +8608,12 @@ react-pdf-js@^5.1.0:
   resolved "https://registry.yarnpkg.com/react-pdf-js/-/react-pdf-js-5.1.0.tgz#58d6858cb31c596fb0d69e37bf7f7c4ad93170cf"
   dependencies:
     "@bundled-es-modules/pdfjs-dist" "2.1.266-rc"
+
+react-plotly.js@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-plotly.js/-/react-plotly.js-2.3.0.tgz#c1e624e33e00e3c5bf7c482f3b80133097619070"
+  dependencies:
+    prop-types "^15.7.2"
 
 react-scripts@3.0.1:
   version "3.0.1"

@@ -3,7 +3,8 @@ import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
-import {handsOnTableToHandsOnTable} from 'datapackage-render'
+import Chart from './Chart.js'
+import {handsOnTableToHandsOnTable, simpleToPlotly} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 
 function App(props) {
@@ -55,6 +56,19 @@ function App(props) {
           </div>
         </div>
       )
+    } else if (view.specType === 'simple') {
+      let thisView = view || {} // default to single table view
+      if (thisView.resources) thisView.resources[0]._values =  _data
+      let plotlySpec = simpleToPlotly(thisView)
+      if (plotlySpec) {
+        return (
+          <div className="App">
+            <div className="container m-24">
+              <Chart spec={plotlySpec} />
+            </div>
+          </div>
+        )
+      }
     } else if (view.resources[0].unavailable) {
       return (
         <div className="App">
