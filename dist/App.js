@@ -15,6 +15,8 @@ var _Map = _interopRequireDefault(require("./Map.js"));
 
 var _Document = _interopRequireDefault(require("./Document.js"));
 
+var _Chart = _interopRequireDefault(require("./Chart.js"));
+
 var _datapackageRender = require("datapackage-render");
 
 var _reactLoaderSpinner = _interopRequireDefault(require("react-loader-spinner"));
@@ -96,6 +98,21 @@ function App(props) {
       }, _react.default.createElement(_Document.default, {
         file: view.resources[0].path
       })));
+    } else if (view.specType === 'simple') {
+      var thisView = view || {}; // default to single table view
+
+      if (thisView.resources) thisView.resources[0]._values = _data;
+      var plotlySpec = (0, _datapackageRender.simpleToPlotly)(thisView);
+
+      if (plotlySpec) {
+        return _react.default.createElement("div", {
+          className: "App"
+        }, _react.default.createElement("div", {
+          className: "container m-24"
+        }, _react.default.createElement(_Chart.default, {
+          spec: plotlySpec
+        })));
+      }
     } else if (view.resources[0].unavailable) {
       return _react.default.createElement("div", {
         className: "App"
