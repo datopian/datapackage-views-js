@@ -93,7 +93,7 @@ it('renders a Map from a table', () => {
   copyOfDp.views[0].spec = {
     "latField": "lat",
     "lonField": "lng",
-    "infobox": "label"
+    "infobox": "${data.label}"
   }
   copyOfDp.views[0].resources[0] = {
     name: 'map',

@@ -1,4 +1,4 @@
-import App from '../src/App.js'
+import App from '../../src/App.js'
 
 const datapackage = {
   "views": [
@@ -41,7 +41,7 @@ const datapackage = {
       "spec": {
         "lonField": "lng",
         "latField": "lat",
-        "infobox": "label"
+        "infobox": "This is my popup message: ${data.label}"
       }
     }
   ]
