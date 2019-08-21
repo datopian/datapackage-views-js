@@ -87,6 +87,33 @@ it('renders a Map for geojson resources', () => {
   expect(container.firstChild).toMatchSnapshot()
 })
 
+it('renders a Map from a table', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'tabularmap'
+  copyOfDp.views[0].spec = {
+    "latField": "lat",
+    "lonField": "lng",
+    "infobox": "label"
+  }
+  copyOfDp.views[0].resources[0] = {
+    name: 'map',
+    _values: [
+      {
+        "lat": 125.6,
+        "lng": 10.1,
+        "label": "My marker on the map 1"
+      },
+      {
+        "lat": 125.6,
+        "lng": 10.2,
+        "label": "My marker on the map 2"
+      }
+    ]
+  }
+  const { container } = render(<App datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
 it('renders a Document for PDF resources', () => {
   const copyOfDp = JSON.parse(JSON.stringify(datapackage))
   copyOfDp.views[0].specType = 'document'

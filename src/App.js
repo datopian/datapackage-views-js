@@ -48,6 +48,15 @@ function App(props) {
           </div>
         </div>
       )
+    } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
+      const geoData = tableToGeoData(view)
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <Map featureCollection={geoData} />
+          </div>
+        </div>
+      )
     } else if (view.specType === 'document') {
       return (
         <div className="App">
@@ -78,6 +87,31 @@ function App(props) {
       )
     }
   }
+}
+
+function tableToGeoData(view) {
+  // Return object template:
+  const geoData = {
+    type: 'FeatureCollection',
+    features: []
+  }
+  // Add features based on spec:
+  if (view.resources[0]._values) {
+    view.resources[0]._values.forEach(row => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [row[view.spec.latField], row[view.spec.lonField]]
+        },
+        properties: {
+          name: row[view.spec.infobox] || ''
+        }
+      }
+      geoData.features.push(feature)
+    })
+  }
+  return geoData
 }
 
 export default App
