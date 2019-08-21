@@ -7,7 +7,7 @@ const datapackage = {
       "resources": [
         {
           "name": "test",
-          "data": [
+          "_values": [
             [
               "a",
               "b",

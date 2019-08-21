@@ -28,23 +28,23 @@ function App(props) {
   }
   for (let i = 0; i < countViews; i++) {
     const view = props.datapackage.views[i]
-    let _data = view ? view.resources[0].data : null
-    if (view.specType === 'table' && _data) {
-      let thisView = view || {} // default to single table view
-      if (thisView.resources) thisView.resources[0]._values =  _data
-      let {data, ...options} = handsOnTableToHandsOnTable(thisView)
+    if (!view.resources[0]._values && view.resources[0].data) {
+      view.resources[0]._values = view.resources[0].data
+    }
+    if (view.specType === 'table' && view.resources[0]._values) {
+      let {data, ...options} = handsOnTableToHandsOnTable(view)
       return (
         <div className="App">
           <div className="container m-24">
-            <Table data={data} options={options} ref={(table) => {window[`table${thisView.id}`] = table}} />
+            <Table data={data} options={options} ref={(table) => {window[`table${view.id}`] = table}} />
           </div>
         </div>
       )
-    } else if (view.specType === 'map' && _data && _data.type) {
+    } else if (view.specType === 'map' && view.resources[0]._values) {
       return (
         <div className="App">
           <div className="container m-24">
-            <Map featureCollection={_data} />
+            <Map featureCollection={view.resources[0]._values} />
           </div>
         </div>
       )
@@ -57,9 +57,7 @@ function App(props) {
         </div>
       )
     } else if (view.specType === 'simple') {
-      let thisView = view || {} // default to single table view
-      if (thisView.resources) thisView.resources[0]._values =  _data
-      let plotlySpec = simpleToPlotly(thisView)
+      let plotlySpec = simpleToPlotly(view)
       if (plotlySpec) {
         return (
           <div className="App">
