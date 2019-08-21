@@ -6,6 +6,7 @@ import PdfViewer from './Document.js'
 import Chart from './Chart.js'
 import {handsOnTableToHandsOnTable, simpleToPlotly} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
+import tableToGeoData from './utils'
 
 function App(props) {
   if (props.loading) {
@@ -87,56 +88,6 @@ function App(props) {
       )
     }
   }
-}
-
-function tableToGeoData(view) {
-  // Return object template:
-  const geoData = {
-    type: 'FeatureCollection',
-    features: []
-  }
-  // Add features based on spec:
-  if (view.resources[0]._values) {
-    view.resources[0]._values.forEach(data => {
-      const feature = {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: []
-        },
-        properties: {
-          name: ''
-        }
-      }
-      // If lon and lat fields provided, just use it:
-      if (view.spec.lonField && view.spec.latField) {
-        feature.geometry.coordinates = [data[view.spec.lonField], data[view.spec.latField]]
-      } else {
-        // Identify geopoint field based on tableschema
-        const geopointField = view.resources[0].schema.fields.find(field => {
-          return field.type === 'geopoint'
-        })
-        if (geopointField.format === 'default') {
-          // Value is a comma separated string, eg, "lon, lat"
-          feature.geometry.coordinates = data[geopointField.name]
-            .split(',')
-            .map(item => item.trim())
-        } else if (geopointField.format === 'array') {
-          feature.geometry.coordinates = data[geopointField.name]
-        } else if (geopointField.format === 'object') {
-          feature.geometry.coordinates = [
-            data[geopointField.name]['lon'],
-            data[geopointField.name]['lat']
-          ]
-        }
-      }
-      if (view.spec.infobox) {
-        feature.properties.name = eval('`' + view.spec.infobox + '`')
-      }
-      geoData.features.push(feature)
-    })
-  }
-  return geoData
 }
 
 export default App
