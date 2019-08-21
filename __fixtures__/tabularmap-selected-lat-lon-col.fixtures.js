@@ -10,11 +10,11 @@ const datapackage = {
           "schema": {
             "fields": [
               {
-                "name": "lat",
+                "name": "lng",
                 "type": "number"
               },
               {
-                "name": "lng",
+                "name": "lat",
                 "type": "number"
               },
               {
@@ -25,13 +25,13 @@ const datapackage = {
           },
           "_values": [
             {
-              "lat": 125.6,
-              "lng": 10.1,
+              "lng": 125.6,
+              "lat": 10.1,
               "label": "My marker on the map 1"
             },
             {
-              "lat": 125.6,
-              "lng": 10.2,
+              "lng": 125.6,
+              "lat": 10.2,
               "label": "My marker on the map 2"
             }
           ]
@@ -39,8 +39,8 @@ const datapackage = {
       ],
       "specType": "tabularmap",
       "spec": {
-        "latField": "lat",
         "lonField": "lng",
+        "latField": "lat",
         "infobox": "label"
       }
     }

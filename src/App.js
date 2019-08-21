@@ -102,7 +102,7 @@ function tableToGeoData(view) {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [row[view.spec.latField], row[view.spec.lonField]]
+          coordinates: [row[view.spec.lonField], row[view.spec.latField]]
         },
         properties: {
           name: row[view.spec.infobox] || ''
