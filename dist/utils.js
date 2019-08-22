@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function tableToGeoData(view) {
-  view.spec = view.spec || {}; // Return object template:
+  view.spec = view.spec || {};
+  view.resources[0].schema = view.resources[0].schema || {
+    fields: [] // Return object template:
 
+  };
   var geoData = {
     type: 'FeatureCollection',
     features: []

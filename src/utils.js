@@ -1,5 +1,6 @@
 function tableToGeoData(view) {
   view.spec = view.spec || {}
+  view.resources[0].schema = view.resources[0].schema || {fields: []}
   // Return object template:
   const geoData = {
     type: 'FeatureCollection',
