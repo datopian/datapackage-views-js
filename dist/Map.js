@@ -26,7 +26,7 @@ _leaflet.default.Icon.Default.mergeOptions({
 });
 
 function _default(props) {
-  var geojson = _leaflet.default.geoJSON(props.featureCollection); // Find the bound of the geojson return LatLngBounds
+  var geojson = _leaflet.default.geoJSON(props.featureCollection); // Find the bound of the geojson returnup LatLngBounds
 
 
   var bounds = geojson.getBounds(); // Find the center of the LatLngBounds returns LatLng
@@ -44,6 +44,13 @@ function _default(props) {
     attribution: "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   }), _react.default.createElement(_reactLeaflet.GeoJSON, {
-    data: props.featureCollection
+    data: props.featureCollection,
+    onEachFeature: onEachFeature
   }));
+}
+
+function onEachFeature(feature, layer) {
+  if (feature.properties && feature.properties.name) {
+    layer.bindPopup(feature.properties.name);
+  }
 }
