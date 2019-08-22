@@ -87,6 +87,119 @@ it('renders a Map for geojson resources', () => {
   expect(container.firstChild).toMatchSnapshot()
 })
 
+it('renders a Map from a table based on spec', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'tabularmap'
+  copyOfDp.views[0].spec = {
+    "latField": "lat",
+    "lonField": "lng",
+    "infobox": "${data.label}"
+  }
+  copyOfDp.views[0].resources[0] = {
+    name: 'map',
+    "schema": {
+      "fields": [
+        {
+          "name": "lng",
+          "type": "number"
+        },
+        {
+          "name": "lat",
+          "type": "number"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    "_values": [
+      {
+        "lng": 125.6,
+        "lat": 10.1,
+        "label": "My marker on the map 1"
+      },
+      {
+        "lng": 125.6,
+        "lat": 10.2,
+        "label": "My marker on the map 2"
+      }
+    ]
+  }
+  const { container } = render(<App datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
+it('renders a Map from a table by auto detecting lon/lat fields', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'tabularmap'
+  copyOfDp.views[0].resources[0] = {
+    name: 'map',
+    "schema": {
+      "fields": [
+        {
+          "name": "lon",
+          "type": "number"
+        },
+        {
+          "name": "lat",
+          "type": "number"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    "_values": [
+      {
+        "lon": 125.6,
+        "lat": 10.1,
+        "label": "My marker on the map 1"
+      },
+      {
+        "lon": 125.6,
+        "lat": 10.2,
+        "label": "My marker on the map 2"
+      }
+    ]
+  }
+  const { container } = render(<App datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
+it('renders a Map from a table by auto detecting geometry field', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'tabularmap'
+  copyOfDp.views[0].resources[0] = {
+    name: 'map',
+    "schema": {
+      "fields": [
+        {
+          "name": "geojson",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    "_values": [
+      {
+        "geojson": "(10.1, 125.6)",
+        "label": "My marker on the map 1"
+      },
+      {
+        "geojson": "(10.2, 125.6)",
+        "label": "My marker on the map 2"
+      }
+    ]
+  }
+  const { container } = render(<App datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
 it('renders a Document for PDF resources', () => {
   const copyOfDp = JSON.parse(JSON.stringify(datapackage))
   copyOfDp.views[0].specType = 'document'

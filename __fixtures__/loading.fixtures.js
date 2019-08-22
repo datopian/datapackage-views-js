@@ -1,14 +1,20 @@
 import App from '../src/App.js'
 
-const view = {
-  "id": 1,
-  "resources": [
-    "test"
-  ],
-  "specType": "table"
+const datapackage = {
+  "views": [
+    {
+      "id": 1,
+      "resources": [
+        "test"
+      ],
+      "specType": "table"
+    }
+  ]
 }
+
+const loading = true
 
 export default {
   component: App,
-  props: {view}
+  props: {datapackage, loading}
 };

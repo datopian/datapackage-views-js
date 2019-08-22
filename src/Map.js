@@ -15,18 +15,26 @@ L.Icon.Default.mergeOptions({
 
 export default function(props) {
   const geojson = L.geoJSON(props.featureCollection)
-  // Find the bound of the geojson return LatLngBounds
+  // Find the bound of the geojson returnup LatLngBounds
   const bounds = geojson.getBounds()
   // Find the center of the LatLngBounds returns LatLng
   let center = bounds.getCenter()
   center = [center.lat, center.lng]
   return (
     <Map center={center} zoom={10} style={{width: '100%', height: 450}}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <GeoJSON data={props.featureCollection} />
-      </Map>
+      <TileLayer
+        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+    <GeoJSON
+      data={props.featureCollection}
+      onEachFeature={onEachFeature} />
+    </Map>
   )
+}
+
+function onEachFeature(feature, layer) {
+  if (feature.properties && feature.properties.name) {
+    layer.bindPopup(feature.properties.name);
+  }
 }
