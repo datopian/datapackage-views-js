@@ -89,7 +89,22 @@ function App(props) {
         })))
       };
     } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
-      var geoData = (0, _utils.default)(view);
+      var geoData;
+
+      try {
+        geoData = (0, _utils.default)(view);
+      } catch (e) {
+        if (e.toString() === 'No geo data found') {
+          return {
+            v: _react.default.createElement("div", {
+              className: "no-geo-data"
+            })
+          };
+        } else {
+          throw e;
+        }
+      }
+
       return {
         v: _react.default.createElement("div", {
           className: "App"

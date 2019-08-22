@@ -50,7 +50,16 @@ function App(props) {
         </div>
       )
     } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
-      const geoData = tableToGeoData(view)
+      let geoData
+      try {
+        geoData = tableToGeoData(view)
+      } catch(e) {
+        if (e.toString() === 'No geo data found') {
+          return (<div className="no-geo-data"></div>)
+        } else {
+          throw e
+        }
+      }
       return (
         <div className="App">
           <div className="container m-24">

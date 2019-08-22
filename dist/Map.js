@@ -26,15 +26,29 @@ _leaflet.default.Icon.Default.mergeOptions({
 });
 
 function _default(props) {
-  var geojson = _leaflet.default.geoJSON(props.featureCollection); // Find the bound of the geojson returnup LatLngBounds
+  var geojson = _leaflet.default.geoJSON(props.featureCollection); // If running in JSDOM, we need to avoid using 'bounds' property of leaflet
+  // which causes the tests to crash.
 
 
-  var bounds = geojson.getBounds(); // Find the center of the LatLngBounds returns LatLng
+  if (process.env.JEST_WORKER_ID) {
+    return _react.default.createElement(_reactLeaflet.Map, {
+      zoom: 10,
+      style: {
+        width: '100%',
+        height: 450
+      }
+    }, _react.default.createElement(_reactLeaflet.TileLayer, {
+      attribution: "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    }), _react.default.createElement(_reactLeaflet.GeoJSON, {
+      data: props.featureCollection,
+      onEachFeature: onEachFeature
+    }));
+  } // Find the bound of the geojson returnup LatLngBounds
 
-  var center = bounds.getCenter();
-  center = [center.lat, center.lng];
+
+  var bounds = geojson.getBounds();
   return _react.default.createElement(_reactLeaflet.Map, {
-    center: center,
     bounds: bounds,
     style: {
       width: '100%',

@@ -71,6 +71,9 @@ function tableToGeoData(view) {
 
             if (latField && lonField) {
               feature.geometry.coordinates = [data[lonField.name], data[latField.name]];
+            } else {
+              // No geodata found:
+              throw 'No geo data found';
             }
           }
         }
