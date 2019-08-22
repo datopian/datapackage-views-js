@@ -21,7 +21,7 @@ export default function(props) {
   let center = bounds.getCenter()
   center = [center.lat, center.lng]
   return (
-    <Map center={center} zoom={10} style={{width: '100%', height: 450}}>
+    <Map center={center} bounds={bounds} style={{width: '100%', height: 450}}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

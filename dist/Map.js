@@ -35,7 +35,7 @@ function _default(props) {
   center = [center.lat, center.lng];
   return _react.default.createElement(_reactLeaflet.Map, {
     center: center,
-    zoom: 10,
+    bounds: bounds,
     style: {
       width: '100%',
       height: 450
