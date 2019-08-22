@@ -15,13 +15,27 @@ L.Icon.Default.mergeOptions({
 
 export default function(props) {
   const geojson = L.geoJSON(props.featureCollection)
+
+  // If running in JSDOM, we need to avoid using 'bounds' property of leaflet
+  // which causes the tests to crash.
+  if (process.env.JEST_WORKER_ID) {
+    return (
+      <Map zoom={10} style={{width: '100%', height: 450}}>
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+      <GeoJSON
+        data={props.featureCollection}
+        onEachFeature={onEachFeature} />
+      </Map>
+    )
+  }
+
   // Find the bound of the geojson returnup LatLngBounds
   const bounds = geojson.getBounds()
-  // Find the center of the LatLngBounds returns LatLng
-  let center = bounds.getCenter()
-  center = [center.lat, center.lng]
   return (
-    <Map center={center} bounds={bounds} style={{width: '100%', height: 450}}>
+    <Map bounds={bounds} style={{width: '100%', height: 450}}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
