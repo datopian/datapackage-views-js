@@ -1,18 +1,24 @@
-import App from '../src/App.js'
+import { DataView } from '../src/index'
 
-const view = {
-  "id": 1,
-  "resources": [
+const datapackage = {
+  "views": [
     {
-      "name": "test",
-      "format": "pdf",
-      "path": "http://www.africau.edu/images/default/sample.pdf"
+      "id": 1,
+      "resources": [
+        {
+          "name": "test",
+          "format": "pdf",
+          "path": "http://www.africau.edu/images/default/sample.pdf"
+        }
+      ],
+      "specType": "document"
     }
-  ],
-  "specType": "document"
+  ]
 }
 
+const loading = false
+
 export default {
-  component: App,
-  props: {view}
+  component: DataView,
+  props: {datapackage, loading}
 };

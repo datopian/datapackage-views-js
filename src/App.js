@@ -1,51 +1,16 @@
 import React from "react"
+import './index.css'
 import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
-import {handsOnTableToHandsOnTable} from 'datapackage-render'
+import Chart from './Chart.js'
+import {handsOnTableToHandsOnTable, simpleToPlotly} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
+import tableToGeoData from './utils'
 
-function App(props) {
-  let _data = props.view ? props.view.resources[0].data : null
-
-  if (props.view.specType === 'table' && _data) {
-    let view = props.view || {} // default to single table view
-    if (view.resources) view.resources[0]._values =  _data
-    let {data, ...options} = handsOnTableToHandsOnTable(view)
-    return (
-      <div className="App">
-        <div className="container m-24">
-          <Table data={data} options={options} ref={(table) => {window[`table${view.id}`] = table}} />
-        </div>
-      </div>
-    )
-  } else if (props.view.specType === 'map' && _data && _data.type) {
-    return (
-      <div className="App">
-        <div className="container m-24">
-          <Map featureCollection={_data} />
-        </div>
-      </div>
-    )
-  } else if (props.view.specType === 'document') {
-    return (
-      <div className="App">
-        <div className="container m-24">
-          <PdfViewer file={props.view.resources[0].path} />
-        </div>
-      </div>
-    )
-  } else if (props.view.resources[0].unavailable) {
-    return (
-      <div className="App">
-        <div className="container m-24">
-          <p>Data view unavailable.</p>
-          <a href={props.view.resources[0].path} className="text-primary font-bold">Download the data.</a>
-        </div>
-      </div>
-    )
-  } else {
+export function DataView(props) {
+  if (props.loading) {
     return (
       <div className="App">
         <div className="container m-24">
@@ -59,6 +24,78 @@ function App(props) {
       </div>
     )
   }
+  const countViews = props.datapackage.views ? props.datapackage.views.length : 0
+  if (countViews === 0) {
+    return (<div className="App">No views available</div>)
+  }
+  for (let i = 0; i < countViews; i++) {
+    const view = props.datapackage.views[i]
+    if (!view.resources[0]._values && view.resources[0].data) {
+      view.resources[0]._values = view.resources[0].data
+    }
+    if (view.specType === 'table' && view.resources[0]._values) {
+      let {data, ...options} = handsOnTableToHandsOnTable(view)
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <Table data={data} options={options} ref={(table) => {window[`table${view.id}`] = table}} />
+          </div>
+        </div>
+      )
+    } else if (view.specType === 'map' && view.resources[0]._values) {
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <Map data={view.resources[0]._values} />
+          </div>
+        </div>
+      )
+    } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
+      let geoData
+      try {
+        geoData = tableToGeoData(view)
+      } catch(e) {
+        if (e.toString() === 'No geo data found') {
+          return (<div className="no-geo-data"></div>)
+        } else {
+          throw e
+        }
+      }
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <Map data={geoData} />
+          </div>
+        </div>
+      )
+    } else if (view.specType === 'document') {
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <PdfViewer file={view.resources[0].path} />
+          </div>
+        </div>
+      )
+    } else if (view.specType === 'simple') {
+      let plotlySpec = simpleToPlotly(view)
+      if (plotlySpec) {
+        return (
+          <div className="App">
+            <div className="container m-24">
+              <Chart spec={plotlySpec} />
+            </div>
+          </div>
+        )
+      }
+    } else if (view.resources[0].unavailable) {
+      return (
+        <div className="App">
+          <div className="container m-24">
+            <p>Data view unavailable.</p>
+            <a href={view.resources[0].path} className="text-primary font-bold">Download the data.</a>
+          </div>
+        </div>
+      )
+    }
+  }
 }
-
-export default App

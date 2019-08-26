@@ -1,0 +1,606 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Document for PDF resources 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div>
+      <span>
+        Loading...
+      </span>
+      <canvas />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a Map for geojson resources 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div
+      class="leaflet-container leaflet-grab leaflet-touch-drag"
+      style="width: 100%; height: 450px; position: relative;"
+      tabindex="0"
+    >
+      <div
+        class="leaflet-pane leaflet-map-pane"
+        style="left: 0px; top: 0px;"
+      >
+        <div
+          class="leaflet-pane leaflet-tile-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-shadow-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-overlay-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-marker-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-tooltip-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-popup-pane"
+        />
+      </div>
+      <div
+        class="leaflet-control-container"
+      >
+        <div
+          class="leaflet-top leaflet-left"
+        >
+          <div
+            class="leaflet-control-zoom leaflet-bar leaflet-control"
+          >
+            <a
+              aria-label="Zoom in"
+              class="leaflet-control-zoom-in"
+              href="#"
+              role="button"
+              title="Zoom in"
+            >
+              +
+            </a>
+            <a
+              aria-label="Zoom out"
+              class="leaflet-control-zoom-out"
+              href="#"
+              role="button"
+              title="Zoom out"
+            >
+              −
+            </a>
+          </div>
+        </div>
+        <div
+          class="leaflet-top leaflet-right"
+        />
+        <div
+          class="leaflet-bottom leaflet-left"
+        />
+        <div
+          class="leaflet-bottom leaflet-right"
+        >
+          <div
+            class="leaflet-control-attribution leaflet-control"
+          >
+            <a
+              href="https://leafletjs.com"
+              title="A JS library for interactive maps"
+            >
+              Leaflet
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a Map from a table based on spec 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div
+      class="leaflet-container leaflet-grab leaflet-touch-drag"
+      style="width: 100%; height: 450px; position: relative;"
+      tabindex="0"
+    >
+      <div
+        class="leaflet-pane leaflet-map-pane"
+        style="left: 0px; top: 0px;"
+      >
+        <div
+          class="leaflet-pane leaflet-tile-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-shadow-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-overlay-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-marker-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-tooltip-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-popup-pane"
+        />
+      </div>
+      <div
+        class="leaflet-control-container"
+      >
+        <div
+          class="leaflet-top leaflet-left"
+        >
+          <div
+            class="leaflet-control-zoom leaflet-bar leaflet-control"
+          >
+            <a
+              aria-label="Zoom in"
+              class="leaflet-control-zoom-in"
+              href="#"
+              role="button"
+              title="Zoom in"
+            >
+              +
+            </a>
+            <a
+              aria-label="Zoom out"
+              class="leaflet-control-zoom-out"
+              href="#"
+              role="button"
+              title="Zoom out"
+            >
+              −
+            </a>
+          </div>
+        </div>
+        <div
+          class="leaflet-top leaflet-right"
+        />
+        <div
+          class="leaflet-bottom leaflet-left"
+        />
+        <div
+          class="leaflet-bottom leaflet-right"
+        >
+          <div
+            class="leaflet-control-attribution leaflet-control"
+          >
+            <a
+              href="https://leafletjs.com"
+              title="A JS library for interactive maps"
+            >
+              Leaflet
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a Map from a table by auto detecting geometry field 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div
+      class="leaflet-container leaflet-grab leaflet-touch-drag"
+      style="width: 100%; height: 450px; position: relative;"
+      tabindex="0"
+    >
+      <div
+        class="leaflet-pane leaflet-map-pane"
+        style="left: 0px; top: 0px;"
+      >
+        <div
+          class="leaflet-pane leaflet-tile-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-shadow-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-overlay-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-marker-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-tooltip-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-popup-pane"
+        />
+      </div>
+      <div
+        class="leaflet-control-container"
+      >
+        <div
+          class="leaflet-top leaflet-left"
+        >
+          <div
+            class="leaflet-control-zoom leaflet-bar leaflet-control"
+          >
+            <a
+              aria-label="Zoom in"
+              class="leaflet-control-zoom-in"
+              href="#"
+              role="button"
+              title="Zoom in"
+            >
+              +
+            </a>
+            <a
+              aria-label="Zoom out"
+              class="leaflet-control-zoom-out"
+              href="#"
+              role="button"
+              title="Zoom out"
+            >
+              −
+            </a>
+          </div>
+        </div>
+        <div
+          class="leaflet-top leaflet-right"
+        />
+        <div
+          class="leaflet-bottom leaflet-left"
+        />
+        <div
+          class="leaflet-bottom leaflet-right"
+        >
+          <div
+            class="leaflet-control-attribution leaflet-control"
+          >
+            <a
+              href="https://leafletjs.com"
+              title="A JS library for interactive maps"
+            >
+              Leaflet
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a Map from a table by auto detecting lon/lat fields 1`] = `
+<div
+  class="App"
+>
+  <div
+    class="container m-24"
+  >
+    <div
+      class="leaflet-container leaflet-grab leaflet-touch-drag"
+      style="width: 100%; height: 450px; position: relative;"
+      tabindex="0"
+    >
+      <div
+        class="leaflet-pane leaflet-map-pane"
+        style="left: 0px; top: 0px;"
+      >
+        <div
+          class="leaflet-pane leaflet-tile-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-shadow-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-overlay-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-marker-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-tooltip-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-popup-pane"
+        />
+      </div>
+      <div
+        class="leaflet-control-container"
+      >
+        <div
+          class="leaflet-top leaflet-left"
+        >
+          <div
+            class="leaflet-control-zoom leaflet-bar leaflet-control"
+          >
+            <a
+              aria-label="Zoom in"
+              class="leaflet-control-zoom-in"
+              href="#"
+              role="button"
+              title="Zoom in"
+            >
+              +
+            </a>
+            <a
+              aria-label="Zoom out"
+              class="leaflet-control-zoom-out"
+              href="#"
+              role="button"
+              title="Zoom out"
+            >
+              −
+            </a>
+          </div>
+        </div>
+        <div
+          class="leaflet-top leaflet-right"
+        />
+        <div
+          class="leaflet-bottom leaflet-left"
+        />
+        <div
+          class="leaflet-bottom leaflet-right"
+        >
+          <div
+            class="leaflet-control-attribution leaflet-control"
+          >
+            <a
+              href="https://leafletjs.com"
+              title="A JS library for interactive maps"
+            >
+              Leaflet
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a preview table when data is loaded 1`] = `
+<table
+  class="htCore"
+>
+  <colgroup>
+    <col
+      style="width: 47px;"
+    />
+  </colgroup>
+  <thead>
+    <tr>
+      <th
+        class=""
+        title="a"
+      >
+        <div
+          class="relative"
+        >
+          <span
+            class="colHeader columnSorting sortAction"
+          >
+            a
+          </span>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        class="htDimmed"
+      >
+        1
+      </td>
+    </tr>
+    <tr>
+      <td
+        class="htDimmed"
+      >
+        3
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`renders a preview table with custom headers 1`] = `
+<table
+  class="htCore"
+>
+  <colgroup>
+    <col
+      style="width: 47px;"
+    />
+  </colgroup>
+  <thead>
+    <tr>
+      <th
+        class=""
+        title="custom-a"
+      >
+        <div
+          class="relative"
+        >
+          <span
+            class="colHeader columnSorting sortAction"
+          >
+            custom-a
+          </span>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        class="htLeft htDimmed"
+      >
+        1
+      </td>
+    </tr>
+    <tr>
+      <td
+        class="htLeft htDimmed"
+      >
+        3
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`renders spinner 1`] = `
+<svg
+  fill="#D3D3D3"
+  height="50"
+  viewBox="0 0 105 105"
+  width="50"
+>
+  <circle
+    cx="12.5"
+    cy="12.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="0s"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="12.5"
+    cy="52.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="100ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="52.5"
+    cy="12.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="300ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="52.5"
+    cy="52.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="600ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="92.5"
+    cy="12.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="800ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="92.5"
+    cy="52.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="400ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="12.5"
+    cy="92.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="700ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="52.5"
+    cy="92.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="500ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+  <circle
+    cx="92.5"
+    cy="92.5"
+    r="12.5"
+  >
+    <animate
+      attributeName="fill-opacity"
+      begin="200ms"
+      calcMode="linear"
+      dur="1s"
+      repeatCount="indefinite"
+      values="1;.2;1"
+    />
+  </circle>
+</svg>
+`;

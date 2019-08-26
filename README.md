@@ -12,6 +12,8 @@ More [below](https://github.com/datopian/datapackage-views-js/blob/master/README
 
 **To see the app populated with views run `yarn dev` and visit `localhost:8989`**
 
+- `yarn build:package` will use babel to compile the package to /dist for distribution
+
 ## cosmos
 We are using [cosmos](https://github.com/react-cosmos/) to mock datasets and test components.
 
