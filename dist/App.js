@@ -3,9 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.DataView = DataView;
 
 var _react = _interopRequireDefault(require("react"));
+
+require("./index.css");
 
 require("./App.css");
 
@@ -31,7 +33,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function App(props) {
+function DataView(props) {
   if (props.loading) {
     return _react.default.createElement("div", {
       className: "App"
@@ -85,7 +87,7 @@ function App(props) {
         }, _react.default.createElement("div", {
           className: "container m-24"
         }, _react.default.createElement(_Map.default, {
-          featureCollection: view.resources[0]._values
+          data: view.resources[0]._values
         })))
       };
     } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
@@ -111,7 +113,7 @@ function App(props) {
         }, _react.default.createElement("div", {
           className: "container m-24"
         }, _react.default.createElement(_Map.default, {
-          featureCollection: geoData
+          data: geoData
         })))
       };
     } else if (view.specType === 'document') {
@@ -158,6 +160,3 @@ function App(props) {
     if (_typeof(_ret) === "object") return _ret.v;
   }
 }
-
-var _default = App;
-exports.default = _default;

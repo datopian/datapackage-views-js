@@ -35,16 +35,49 @@ exports[`renders a Map for geojson resources 1`] = `
       >
         <div
           class="leaflet-pane leaflet-tile-pane"
-        />
+        >
+          <div
+            class="leaflet-layer "
+            style="z-index: 1;"
+          >
+            <div
+              class="leaflet-tile-container leaflet-zoom-animated"
+              style="left: 0px; top: 0px;"
+            >
+              <img
+                alt=""
+                class="leaflet-tile"
+                role="presentation"
+                src="https://c.tile.openstreetmap.org/10/869/483.png"
+                style="width: 256px; height: 256px; left: -67px; top: -31px;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="leaflet-pane leaflet-shadow-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 0px;"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-overlay-pane"
         />
         <div
           class="leaflet-pane leaflet-marker-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 0px; z-index: 0;"
+            tabindex="0"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-tooltip-pane"
         />
@@ -99,6 +132,13 @@ exports[`renders a Map for geojson resources 1`] = `
             >
               Leaflet
             </a>
+             | © 
+            <a
+              href="http://osm.org/copyright"
+            >
+              OpenStreetMap
+            </a>
+             contributors
           </div>
         </div>
       </div>
@@ -125,16 +165,62 @@ exports[`renders a Map from a table based on spec 1`] = `
       >
         <div
           class="leaflet-pane leaflet-tile-pane"
-        />
+        >
+          <div
+            class="leaflet-layer "
+            style="z-index: 1;"
+          >
+            <div
+              class="leaflet-tile-container leaflet-zoom-animated"
+              style="left: 0px; top: 0px;"
+            >
+              <img
+                alt=""
+                class="leaflet-tile"
+                role="presentation"
+                src="https://b.tile.openstreetmap.org/10/869/482.png"
+                style="width: 256px; height: 256px; left: -67px; top: -250px;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="leaflet-pane leaflet-shadow-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 37px;"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: -37px;"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-overlay-pane"
         />
         <div
           class="leaflet-pane leaflet-marker-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 37px; z-index: 37;"
+            tabindex="0"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: -37px; z-index: -37;"
+            tabindex="0"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-tooltip-pane"
         />
@@ -189,6 +275,13 @@ exports[`renders a Map from a table based on spec 1`] = `
             >
               Leaflet
             </a>
+             | © 
+            <a
+              href="http://osm.org/copyright"
+            >
+              OpenStreetMap
+            </a>
+             contributors
           </div>
         </div>
       </div>
@@ -215,16 +308,62 @@ exports[`renders a Map from a table by auto detecting geometry field 1`] = `
       >
         <div
           class="leaflet-pane leaflet-tile-pane"
-        />
+        >
+          <div
+            class="leaflet-layer "
+            style="z-index: 1;"
+          >
+            <div
+              class="leaflet-tile-container leaflet-zoom-animated"
+              style="left: 0px; top: 0px;"
+            >
+              <img
+                alt=""
+                class="leaflet-tile"
+                role="presentation"
+                src="https://b.tile.openstreetmap.org/10/869/482.png"
+                style="width: 256px; height: 256px; left: -67px; top: -250px;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="leaflet-pane leaflet-shadow-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 37px;"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: -37px;"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-overlay-pane"
         />
         <div
           class="leaflet-pane leaflet-marker-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 37px; z-index: 37;"
+            tabindex="0"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: -37px; z-index: -37;"
+            tabindex="0"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-tooltip-pane"
         />
@@ -279,6 +418,13 @@ exports[`renders a Map from a table by auto detecting geometry field 1`] = `
             >
               Leaflet
             </a>
+             | © 
+            <a
+              href="http://osm.org/copyright"
+            >
+              OpenStreetMap
+            </a>
+             contributors
           </div>
         </div>
       </div>
@@ -305,16 +451,62 @@ exports[`renders a Map from a table by auto detecting lon/lat fields 1`] = `
       >
         <div
           class="leaflet-pane leaflet-tile-pane"
-        />
+        >
+          <div
+            class="leaflet-layer "
+            style="z-index: 1;"
+          >
+            <div
+              class="leaflet-tile-container leaflet-zoom-animated"
+              style="left: 0px; top: 0px;"
+            >
+              <img
+                alt=""
+                class="leaflet-tile"
+                role="presentation"
+                src="https://b.tile.openstreetmap.org/10/869/482.png"
+                style="width: 256px; height: 256px; left: -67px; top: -250px;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="leaflet-pane leaflet-shadow-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: 37px;"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-shadow leaflet-zoom-hide"
+            src="marker-shadow.png"
+            style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; left: 0px; top: -37px;"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-overlay-pane"
         />
         <div
           class="leaflet-pane leaflet-marker-pane"
-        />
+        >
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: 37px; z-index: 37;"
+            tabindex="0"
+          />
+          <img
+            alt=""
+            class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+            src="marker-icon.png"
+            style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; left: 0px; top: -37px; z-index: -37;"
+            tabindex="0"
+          />
+        </div>
         <div
           class="leaflet-pane leaflet-tooltip-pane"
         />
@@ -369,6 +561,13 @@ exports[`renders a Map from a table by auto detecting lon/lat fields 1`] = `
             >
               Leaflet
             </a>
+             | © 
+            <a
+              href="http://osm.org/copyright"
+            >
+              OpenStreetMap
+            </a>
+             contributors
           </div>
         </div>
       </div>

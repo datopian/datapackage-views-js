@@ -26,12 +26,19 @@ _leaflet.default.Icon.Default.mergeOptions({
 });
 
 function _default(props) {
-  var geojson = _leaflet.default.geoJSON(props.featureCollection); // If running in JSDOM, we need to avoid using 'bounds' property of leaflet
+  var geojson = _leaflet.default.geoJSON(props.data); // Find the bound of the geojson returnup LatLngBounds
+
+
+  var bounds = geojson.getBounds(); // If single feature is given we just set center and zoom properties.
+  // Or if running in JSDOM, we need to avoid using 'bounds' property of leaflet
   // which causes the tests to crash.
 
-
-  if (process.env.JEST_WORKER_ID) {
+  if (!props.data.features || process.env.JEST_WORKER_ID) {
+    // Find the center of the LatLngBounds returns LatLng
+    var center = bounds.getCenter();
+    center = [center.lat, center.lng];
     return _react.default.createElement(_reactLeaflet.Map, {
+      center: center,
       zoom: 10,
       style: {
         width: '100%',
@@ -41,13 +48,11 @@ function _default(props) {
       attribution: "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     }), _react.default.createElement(_reactLeaflet.GeoJSON, {
-      data: props.featureCollection,
+      data: props.data,
       onEachFeature: onEachFeature
     }));
-  } // Find the bound of the geojson returnup LatLngBounds
+  }
 
-
-  var bounds = geojson.getBounds();
   return _react.default.createElement(_reactLeaflet.Map, {
     bounds: bounds,
     style: {
@@ -58,7 +63,7 @@ function _default(props) {
     attribution: "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   }), _react.default.createElement(_reactLeaflet.GeoJSON, {
-    data: props.featureCollection,
+    data: props.data,
     onEachFeature: onEachFeature
   }));
 }

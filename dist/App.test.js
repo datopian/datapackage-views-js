@@ -6,7 +6,7 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _react2 = require("@testing-library/react");
 
-var _App = _interopRequireDefault(require("./App"));
+var _index = require("./index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,7 +19,7 @@ var datapackage = {
   }]
 };
 it('renders spinner', function () {
-  var _render = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: datapackage,
     loading: true
   })),
@@ -34,7 +34,7 @@ it('renders error message when data is unavailable', function () {
     unavailable: true
   };
 
-  var _render2 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render2 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       getByText = _render2.getByText;
@@ -54,7 +54,7 @@ it('renders a preview table when data is loaded', function () {
     }]
   };
 
-  var _render3 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render3 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render3.container;
@@ -83,7 +83,7 @@ it('renders a preview table with custom headers', function () {
     }
   };
 
-  var _render4 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render4 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render4.container;
@@ -107,7 +107,7 @@ it('renders a Map for geojson resources', function () {
     }
   };
 
-  var _render5 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render5 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render5.container;
@@ -147,7 +147,7 @@ it('renders a Map from a table based on spec', function () {
     }]
   };
 
-  var _render6 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render6 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render6.container;
@@ -182,7 +182,7 @@ it('renders a Map from a table by auto detecting lon/lat fields', function () {
     }]
   };
 
-  var _render7 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render7 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render7.container;
@@ -212,7 +212,7 @@ it('renders a Map from a table by auto detecting geometry field', function () {
     }]
   };
 
-  var _render8 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render8 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render8.container;
@@ -228,7 +228,7 @@ it('renders a Document for PDF resources', function () {
     path: 'some-path-to-pdf'
   };
 
-  var _render9 = (0, _react2.render)(_react.default.createElement(_App.default, {
+  var _render9 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render9.container;
