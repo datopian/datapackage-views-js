@@ -46,7 +46,7 @@ export function DataView(props) {
       return (
         <div className="App">
           <div className="container m-24">
-            <Map featureCollection={view.resources[0]._values} />
+            <Map data={view.resources[0]._values} />
           </div>
         </div>
       )
@@ -64,7 +64,7 @@ export function DataView(props) {
       return (
         <div className="App">
           <div className="container m-24">
-            <Map featureCollection={geoData} />
+            <Map data={geoData} />
           </div>
         </div>
       )
