@@ -1,4 +1,5 @@
 import React from "react"
+import './index.css'
 import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
@@ -8,7 +9,7 @@ import {handsOnTableToHandsOnTable, simpleToPlotly} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 import tableToGeoData from './utils'
 
-function App(props) {
+export function DataView(props) {
   if (props.loading) {
     return (
       <div className="App">
@@ -98,5 +99,3 @@ function App(props) {
     }
   }
 }
-
-export default App

@@ -1,4 +1,4 @@
-import App from '../src/App.js'
+import { DataView } from '../src/index'
 
 const datapackage = {
   "views": [
@@ -30,6 +30,6 @@ const datapackage = {
 const loading = false
 
 export default {
-  component: App,
+  component: DataView,
   props: {datapackage, loading}
 };

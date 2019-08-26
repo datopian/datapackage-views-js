@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from '@testing-library/react';
-import App from './App';
+import { DataView } from './index'
 
 
 const datapackage = {
@@ -18,7 +18,7 @@ const datapackage = {
 }
 
 it('renders spinner', () => {
-  const { container } = render(<App datapackage={datapackage} loading={true} />)
+  const { container } = render(<DataView datapackage={datapackage} loading={true} />)
   expect(container.querySelector('svg')).toMatchSnapshot()
 });
 
@@ -28,7 +28,7 @@ it('renders error message when data is unavailable', () => {
     name: 'gdp',
     unavailable: true
   }
-  const { getByText } = render(<App datapackage={copyOfDp} />)
+  const { getByText } = render(<DataView datapackage={copyOfDp} />)
   expect(getByText('Data view unavailable.')).toBeInTheDocument()
 })
 
@@ -41,7 +41,7 @@ it('renders a preview table when data is loaded', () => {
       {a:3, b:4}
     ]
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.querySelector('table.htCore')).toMatchSnapshot()
 })
 
@@ -60,7 +60,7 @@ it('renders a preview table with custom headers', () => {
       ]
     }
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.querySelector('table.htCore')).toMatchSnapshot()
 })
 
@@ -83,7 +83,7 @@ it('renders a Map for geojson resources', () => {
       }
     }
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -126,7 +126,7 @@ it('renders a Map from a table based on spec', () => {
       }
     ]
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -164,7 +164,7 @@ it('renders a Map from a table by auto detecting lon/lat fields', () => {
       }
     ]
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -196,7 +196,7 @@ it('renders a Map from a table by auto detecting geometry field', () => {
       }
     ]
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
 
@@ -208,6 +208,6 @@ it('renders a Document for PDF resources', () => {
     format: 'pdf',
     path: 'some-path-to-pdf'
   }
-  const { container } = render(<App datapackage={copyOfDp} />)
+  const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
