@@ -1,5 +1,5 @@
 {
-  "name": "datapackage-views-js",
+  "name": "@datopian/datapackage-views-js",
   "version": "0.0.8",
   "private": true,
   "dependencies": {
