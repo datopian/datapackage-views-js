@@ -13,7 +13,7 @@ function tableToGeoData(view) {
       // If geometry field exists, parse and use it:
       const geometryFieldNames = ['geojson', 'geom','the_geom','geometry','spatial','location', 'geo', 'lonlat']
       const geometryField = view.resources[0].schema.fields.find(field => {
-        return geometryFieldNames.includes(field.name)
+        return geometryFieldNames.includes(field.name.toLowerCase())
       })
       if (geometryField) {
         feature = getGeometryFromRecord(data[geometryField.name])
@@ -55,10 +55,10 @@ function tableToGeoData(view) {
             const latitudeFieldNames = ['lat','latitude']
             const longitudeFieldNames = ['lon','longitude']
             const latField = view.resources[0].schema.fields.find(field => {
-              return latitudeFieldNames.includes(field.name)
+              return latitudeFieldNames.includes(field.name.toLowerCase())
             })
             const lonField = view.resources[0].schema.fields.find(field => {
-              return longitudeFieldNames.includes(field.name)
+              return longitudeFieldNames.includes(field.name.toLowerCase())
             })
             if (latField && lonField) {
               feature.geometry.coordinates = [data[lonField.name], data[latField.name]]

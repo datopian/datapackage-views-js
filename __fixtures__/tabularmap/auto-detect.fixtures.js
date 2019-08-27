@@ -10,11 +10,11 @@ const datapackage = {
           "schema": {
             "fields": [
               {
-                "name": "lon",
+                "name": "LON",
                 "type": "number"
               },
               {
-                "name": "lat",
+                "name": "LaT",
                 "type": "number"
               },
               {
@@ -25,13 +25,13 @@ const datapackage = {
           },
           "_values": [
             {
-              "lon": 125.6,
-              "lat": 10.1,
+              "LON": 125.6,
+              "LaT": 10.1,
               "label": "My marker on the map 1"
             },
             {
-              "lon": 125.6,
-              "lat": 10.2,
+              "LON": 125.6,
+              "LaT": 10.2,
               "label": "My marker on the map 2"
             }
           ]

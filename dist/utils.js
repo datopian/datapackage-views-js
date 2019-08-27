@@ -22,7 +22,7 @@ function tableToGeoData(view) {
 
       var geometryFieldNames = ['geojson', 'geom', 'the_geom', 'geometry', 'spatial', 'location', 'geo', 'lonlat'];
       var geometryField = view.resources[0].schema.fields.find(function (field) {
-        return geometryFieldNames.includes(field.name);
+        return geometryFieldNames.includes(field.name.toLowerCase());
       });
 
       if (geometryField) {
@@ -66,10 +66,10 @@ function tableToGeoData(view) {
             var latitudeFieldNames = ['lat', 'latitude'];
             var longitudeFieldNames = ['lon', 'longitude'];
             var latField = view.resources[0].schema.fields.find(function (field) {
-              return latitudeFieldNames.includes(field.name);
+              return latitudeFieldNames.includes(field.name.toLowerCase());
             });
             var lonField = view.resources[0].schema.fields.find(function (field) {
-              return longitudeFieldNames.includes(field.name);
+              return longitudeFieldNames.includes(field.name.toLowerCase());
             });
 
             if (latField && lonField) {
