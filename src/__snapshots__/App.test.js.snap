@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`doesnt crash if no geo data is found 1`] = `
+<div
+  class="no-geo-data"
+/>
+`;
+
 exports[`renders a Chart based on view spec 1`] = `
 <div
   class="App"

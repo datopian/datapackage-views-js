@@ -32,6 +32,12 @@ it('renders error message when data is unavailable', () => {
   expect(getByText('Data view unavailable.')).toBeInTheDocument()
 })
 
+it('renders a message when no views given', () => {
+  const noViews = {}
+  const { getByText } = render(<DataView datapackage={noViews} />)
+  expect(getByText('No views available')).toBeInTheDocument()
+})
+
 it('renders a preview table when data is loaded', () => {
   const copyOfDp = JSON.parse(JSON.stringify(datapackage))
   copyOfDp.views[0].resources[0] = {
@@ -193,6 +199,38 @@ it('renders a Map from a table by auto detecting geometry field', () => {
       {
         "geojson": "(10.2, 125.6)",
         "label": "My marker on the map 2"
+      }
+    ]
+  }
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
+it('doesnt crash if no geo data is found', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'tabularmap'
+  copyOfDp.views[0].resources[0] = {
+    "name": "map",
+    "schema": {
+      "fields": [
+        {
+          "name": "a",
+          "type": "integer"
+        },
+        {
+          "name": "b",
+          "type": "integer"
+        }
+      ]
+    },
+    "_values": [
+      {
+        "a": 1,
+        "b": 2
+      },
+      {
+        "a": 3,
+        "b": 4
       }
     ]
   }
