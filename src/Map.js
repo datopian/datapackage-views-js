@@ -20,7 +20,7 @@ export default function(props) {
   // If single feature is given we just set center and zoom properties.
   // Or if running in JSDOM, we need to avoid using 'bounds' property of leaflet
   // which causes the tests to crash.
-  if (!props.data.features || process.env.JEST_WORKER_ID) {
+  if (!props.data.features || props.data.features.length < 2 || process.env.JEST_WORKER_ID) {
     // Find the center of the LatLngBounds returns LatLng
     let center = bounds.getCenter()
     center = [center.lat, center.lng]
