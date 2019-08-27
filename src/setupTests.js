@@ -5,4 +5,10 @@ import '@testing-library/react/cleanup-after-each';
 import 'jest-dom/extend-expect';
 // Mock Chart component as Plotly lib errors when trying to run Jest tests:
 // TypeError: Cannot read property 'document' of undefined
-jest.mock('./Chart.js', () => () => ({}))
+import React from 'react'
+jest.mock('./Chart.js', () => (props) => {
+  if (props.spec && props.spec.data && props.spec.layout) {
+    return (<div>Stubbed Chart</div>)
+  }
+  return (<div>Wrong Chart</div>)
+})

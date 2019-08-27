@@ -211,3 +211,34 @@ it('renders a Document for PDF resources', () => {
   const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
+
+it('renders a Chart based on view spec', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'simple'
+  copyOfDp.views[0].spec = {
+    type: 'line',
+    group: 'a',
+    series: ['b']
+  }
+  copyOfDp.views[0].resources[0] = {
+    name: 'gdp',
+    data: [
+      {a:1, b:2},
+      {a:3, b:4}
+    ],
+    schema: {
+      fields: [
+        {
+          name: 'a',
+          type: 'integer'
+        },
+        {
+          name: 'b',
+          type: 'integer'
+        }
+      ]
+    }
+  }
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
