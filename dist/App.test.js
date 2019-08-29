@@ -41,6 +41,16 @@ it('renders error message when data is unavailable', function () {
 
   expect(getByText('Data view unavailable.')).toBeInTheDocument();
 });
+it('renders a message when no views given', function () {
+  var noViews = {};
+
+  var _render3 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: noViews
+  })),
+      getByText = _render3.getByText;
+
+  expect(getByText('No views available')).toBeInTheDocument();
+});
 it('renders a preview table when data is loaded', function () {
   var copyOfDp = JSON.parse(JSON.stringify(datapackage));
   copyOfDp.views[0].resources[0] = {
@@ -54,10 +64,10 @@ it('renders a preview table when data is loaded', function () {
     }]
   };
 
-  var _render3 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render4 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render3.container;
+      container = _render4.container;
 
   expect(container.querySelector('table.htCore')).toMatchSnapshot();
 });
@@ -83,10 +93,10 @@ it('renders a preview table with custom headers', function () {
     }
   };
 
-  var _render4 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render5 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render4.container;
+      container = _render5.container;
 
   expect(container.querySelector('table.htCore')).toMatchSnapshot();
 });
@@ -107,10 +117,10 @@ it('renders a Map for geojson resources', function () {
     }
   };
 
-  var _render5 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render6 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render5.container;
+      container = _render6.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });
@@ -147,10 +157,10 @@ it('renders a Map from a table based on spec', function () {
     }]
   };
 
-  var _render6 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render7 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render6.container;
+      container = _render7.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });
@@ -182,10 +192,10 @@ it('renders a Map from a table by auto detecting lon/lat fields', function () {
     }]
   };
 
-  var _render7 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render8 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render7.container;
+      container = _render8.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });
@@ -212,10 +222,40 @@ it('renders a Map from a table by auto detecting geometry field', function () {
     }]
   };
 
-  var _render8 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render9 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render8.container;
+      container = _render9.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});
+it('doesnt crash if no geo data is found', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'tabularmap';
+  copyOfDp.views[0].resources[0] = {
+    "name": "map",
+    "schema": {
+      "fields": [{
+        "name": "a",
+        "type": "integer"
+      }, {
+        "name": "b",
+        "type": "integer"
+      }]
+    },
+    "_values": [{
+      "a": 1,
+      "b": 2
+    }, {
+      "a": 3,
+      "b": 4
+    }]
+  };
+
+  var _render10 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render10.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });
@@ -228,10 +268,45 @@ it('renders a Document for PDF resources', function () {
     path: 'some-path-to-pdf'
   };
 
-  var _render9 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+  var _render11 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
-      container = _render9.container;
+      container = _render11.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});
+it('renders a Chart based on view spec', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'simple';
+  copyOfDp.views[0].spec = {
+    type: 'line',
+    group: 'a',
+    series: ['b']
+  };
+  copyOfDp.views[0].resources[0] = {
+    name: 'gdp',
+    data: [{
+      a: 1,
+      b: 2
+    }, {
+      a: 3,
+      b: 4
+    }],
+    schema: {
+      fields: [{
+        name: 'a',
+        type: 'integer'
+      }, {
+        name: 'b',
+        type: 'integer'
+      }]
+    }
+  };
+
+  var _render12 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render12.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });

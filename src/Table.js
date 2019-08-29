@@ -53,7 +53,7 @@ export default class Table extends React.Component {
   render() {
     return (
       <div>
-        <div className="downloadables">
+        <div className="downloadables hidden">
           <span>Download preview data:</span>
           <CSVLink
             data={this.state.data}
