@@ -98,7 +98,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", null, _react.default.createElement("div", {
-        className: "downloadables"
+        className: "downloadables hidden"
       }, _react.default.createElement("span", null, "Download preview data:"), _react.default.createElement(_reactCsv.CSVLink, {
         data: this.state.data,
         headers: this.state.settings.colHeaders,
