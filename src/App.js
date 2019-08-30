@@ -54,20 +54,16 @@ export function DataView(props) {
       let geoData
       try {
         geoData = tableToGeoData(view)
-      } catch(e) {
-        if (e.toString() === 'No geo data found') {
-          return (<div className="no-geo-data"></div>)
-        } else {
-          throw e
-        }
-      }
-      return (
-        <div className="App">
-          <div className="container m-24">
-            <Map data={geoData} />
+        return (
+          <div className="App">
+            <div className="container m-24">
+              <Map data={geoData} />
+            </div>
           </div>
-        </div>
-      )
+        )
+      } catch (e) {
+        return (<div className={e}></div>)
+      }
     } else if (view.specType === 'document') {
       return (
         <div className="App">
@@ -77,15 +73,20 @@ export function DataView(props) {
         </div>
       )
     } else if (view.specType === 'simple') {
-      let plotlySpec = simpleToPlotly(view)
-      if (plotlySpec) {
-        return (
-          <div className="App">
-            <div className="container m-24">
-              <Chart spec={plotlySpec} />
+      let plotlySpec
+      try {
+        plotlySpec = simpleToPlotly(view)
+        if (plotlySpec) {
+          return (
+            <div className="App">
+              <div className="container m-24">
+                <Chart spec={plotlySpec} />
+              </div>
             </div>
-          </div>
-        )
+          )
+        }
+      } catch (e) {
+        return (<div className={e}></div>)
       }
     } else if (view.resources[0].unavailable) {
       return (

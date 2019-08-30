@@ -310,3 +310,14 @@ it('renders a Chart based on view spec', function () {
 
   expect(container.firstChild).toMatchSnapshot();
 });
+it('does not crash if spec is missing for a Chart', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'simple';
+
+  var _render13 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render13.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});

@@ -280,3 +280,10 @@ it('renders a Chart based on view spec', () => {
   const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
+
+it('does not crash if spec is missing for a Chart', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'simple'
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})

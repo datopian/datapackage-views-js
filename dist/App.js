@@ -95,27 +95,22 @@ function DataView(props) {
 
       try {
         geoData = (0, _utils.default)(view);
+        return {
+          v: _react.default.createElement("div", {
+            className: "App"
+          }, _react.default.createElement("div", {
+            className: "container m-24"
+          }, _react.default.createElement(_Map.default, {
+            data: geoData
+          })))
+        };
       } catch (e) {
-        if (e.toString() === 'No geo data found') {
-          return {
-            v: _react.default.createElement("div", {
-              className: "no-geo-data"
-            })
-          };
-        } else {
-          throw e;
-        }
+        return {
+          v: _react.default.createElement("div", {
+            className: e
+          })
+        };
       }
-
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("div", {
-          className: "container m-24"
-        }, _react.default.createElement(_Map.default, {
-          data: geoData
-        })))
-      };
     } else if (view.specType === 'document') {
       return {
         v: _react.default.createElement("div", {
@@ -127,17 +122,27 @@ function DataView(props) {
         })))
       };
     } else if (view.specType === 'simple') {
-      var plotlySpec = (0, _datapackageRender.simpleToPlotly)(view);
+      var plotlySpec;
 
-      if (plotlySpec) {
+      try {
+        plotlySpec = (0, _datapackageRender.simpleToPlotly)(view);
+
+        if (plotlySpec) {
+          return {
+            v: _react.default.createElement("div", {
+              className: "App"
+            }, _react.default.createElement("div", {
+              className: "container m-24"
+            }, _react.default.createElement(_Chart.default, {
+              spec: plotlySpec
+            })))
+          };
+        }
+      } catch (e) {
         return {
           v: _react.default.createElement("div", {
-            className: "App"
-          }, _react.default.createElement("div", {
-            className: "container m-24"
-          }, _react.default.createElement(_Chart.default, {
-            spec: plotlySpec
-          })))
+            className: e
+          })
         };
       }
     } else if (view.resources[0].unavailable) {

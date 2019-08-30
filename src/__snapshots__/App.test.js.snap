@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`does not crash if spec is missing for a Chart 1`] = `
+<div
+  class="TypeError: Cannot read property 'length' of undefined"
+/>
+`;
+
 exports[`doesnt crash if no geo data is found 1`] = `
 <div
-  class="no-geo-data"
+  class="No geo data found"
 />
 `;
 
