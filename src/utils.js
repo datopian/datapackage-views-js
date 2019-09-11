@@ -6,6 +6,7 @@ function getLonLat(row, fields) {
       // now match valid lon or lat
       const val = numeric[0].toString().match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$|^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+))$/)
       if (val) {
+        if (isNaN(val[0])) throw 'Invalid lon/lat values'
         return val[0]
       } else {
         throw "Invalid lon/lat values"
