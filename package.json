@@ -1,6 +1,6 @@
 {
   "name": "@datopian/datapackage-views-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "main": "/dist/App.js",
   "module": "/dist/App.js",

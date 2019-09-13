@@ -1,4 +1,24 @@
+function getLonLat(row, fields) {
+  return fields.map((field, i) => {
+    // strip trailing non-numeric characters such as deg, n, ...
+    const numeric = row[field].toString().match(/[-+]?[0-9]*\.?[0-9]*/)
+    if (numeric) {
+      // now match valid lon or lat
+      const val = numeric[0].toString().match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$|^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+))$/)
+      if (val) {
+        if (isNaN(val[0])) throw 'Invalid lon/lat values'
+        return val[0]
+      } else {
+        throw "Invalid lon/lat values"
+      }
+    } else {
+      throw "Invalid lon/lat values"
+    }
+  })
+}
+
 function tableToGeoData(view) {
+
   view.spec = view.spec || {}
   view.resources[0].schema = view.resources[0].schema || {fields: []}
   // Return object template:
@@ -31,7 +51,13 @@ function tableToGeoData(view) {
         }
         // If lon and lat fields provided, just use it:
         if (view.spec.lonField && view.spec.latField) {
-          feature.geometry.coordinates = [data[view.spec.lonField], data[view.spec.latField]]
+          try {
+            feature.geometry.coordinates = getLonLat(data, [view.spec.lonField, view.spec.latField])
+          } catch (e) {
+            // warn and skip this row if invalid
+            console.warn(e)
+            return
+          }
         } else {
           // Identify geopoint field based on tableschema
           const geopointField = view.resources[0].schema.fields.find(field => {
@@ -76,6 +102,8 @@ function tableToGeoData(view) {
       geoData.features.push(feature)
     })
   }
+
+  if (geoData.features.length === 0) throw "No geodata on resource"
 
   return geoData
 }
