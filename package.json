@@ -1,6 +1,6 @@
 {
   "name": "@datopian/datapackage-views-js",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": false,
   "main": "/dist/App.js",
   "module": "/dist/App.js",
@@ -18,7 +18,9 @@
     "react-loader-spinner": "^2.3.0",
     "react-pdf-js": "^5.1.0",
     "react-plotly.js": "^2.3.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-vega": "4.0.2",
+    "vega-lib": "4.4.0"
   },
   "scripts": {
     "cosmos": "cosmos",

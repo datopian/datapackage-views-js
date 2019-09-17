@@ -321,3 +321,14 @@ it('does not crash if spec is missing for a Chart', function () {
 
   expect(container.firstChild).toMatchSnapshot();
 });
+it('vega does not crash', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'vega';
+
+  var _render14 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render14.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});

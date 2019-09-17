@@ -1,11 +1,12 @@
 import React from "react"
+import Vega from 'react-vega';
 import './index.css'
 import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
 import Chart from './Chart.js'
-import {handsOnTableToHandsOnTable, simpleToPlotly} from 'datapackage-render'
+import {handsOnTableToHandsOnTable, simpleToPlotly, vegaToVega} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 import tableToGeoData from './utils'
 
@@ -85,6 +86,16 @@ export function DataView(props) {
             </div>
           )
         }
+      } catch (e) {
+        return (<div className={e}></div>)
+      }
+    } else if (view.specType === 'vega') {
+      let vegaSpec
+      try {
+        vegaSpec = vegaToVega(view)
+        return (
+          <Vega spec={vegaSpec} />
+        )
       } catch (e) {
         return (<div className={e}></div>)
       }

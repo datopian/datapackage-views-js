@@ -11,3 +11,5 @@ Object.defineProperty(exports, "DataView", {
 });
 
 var _App = require("./App");
+
+window.DatapackageView = _App.DataView;

@@ -829,3 +829,9 @@ exports[`renders spinner 1`] = `
   </circle>
 </svg>
 `;
+
+exports[`vega does not crash 1`] = `
+<div
+  class=""
+/>
+`;

@@ -287,3 +287,10 @@ it('does not crash if spec is missing for a Chart', () => {
   const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
+
+it('vega does not crash', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'vega'
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})

@@ -7,6 +7,8 @@ exports.DataView = DataView;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactVega = _interopRequireDefault(require("react-vega"));
+
 require("./index.css");
 
 require("./App.css");
@@ -138,6 +140,23 @@ function DataView(props) {
             })))
           };
         }
+      } catch (e) {
+        return {
+          v: _react.default.createElement("div", {
+            className: e
+          })
+        };
+      }
+    } else if (view.specType === 'vega') {
+      var vegaSpec;
+
+      try {
+        vegaSpec = (0, _datapackageRender.vegaToVega)(view);
+        return {
+          v: _react.default.createElement(_reactVega.default, {
+            spec: vegaSpec
+          })
+        };
       } catch (e) {
         return {
           v: _react.default.createElement("div", {
