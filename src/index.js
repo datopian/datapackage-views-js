@@ -27,16 +27,16 @@ for (const instance of instances) {
     // Data fetcher
     dataset.resources.forEach(async (file) => {
       if (file.displayName === 'FileInline') {
-        return
+        // Just pass
       } else if (file.descriptor.path && file.descriptor.path.includes('datastore_search')) {
         // Datastore, e.g., when a path is a 'datastore_search' API
         const response = await fetch(file.descriptor.path)
         if (!response.ok) {
           file.descriptor.unavailable = true
-          return
+        } else {
+          const result = await response.json()
+          file.descriptor.data = result.result.records
         }
-        const result = await response.json()
-        file.descriptor.data = result.result.records
       } else if (file.displayName === "FileRemote" && tabularFormats.includes(file.descriptor.format)) {
         // Tabular data
         try {
@@ -53,23 +53,26 @@ for (const instance of instances) {
         }
       } else if (file.descriptor.format.toLowerCase().includes('json')) {
         // Geographical data
-        const response = await fetch(file.descriptor.path)
+        const response = await fetch(file.descriptor.cc_proxy || file.descriptor.path)
         if (!response.ok) {
           file.descriptor.unavailable = true
-          return
-        }
-        const result = await response.json()
-        // The '.json' files can contain geo data - check by its 'type' property
-        const geoJsonTypes = [
-          'Feature', 'FeatureCollection', 'Point', 'MultiPoint', 'LineString',
-          'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'
-        ]
-        if (geoJsonTypes.includes(result.type)) {
-          file.descriptor.data = result
+          file.descriptor.errorMessage = await response.text()
+          if (file.descriptor.errorMessage.includes('Content is too large')) {
+            file.descriptor.errorMessage = 'Content is too large to be previewed.'
+          }
         } else {
-          // It isn't a valid GeoJSON
-          file.descriptor.unavailable = true
-          return
+          const result = await response.json()
+          // The '.json' files can contain geo data - check by its 'type' property
+          const geoJsonTypes = [
+            'Feature', 'FeatureCollection', 'Point', 'MultiPoint', 'LineString',
+            'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'
+          ]
+          if (geoJsonTypes.includes(result.type)) {
+            file.descriptor.data = result
+          } else {
+            // It isn't a valid GeoJSON
+            file.descriptor.unavailable = true
+          }
         }
       } else if (file.descriptor.format.toLowerCase() === 'pdf') {
         return

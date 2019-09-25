@@ -40,8 +40,8 @@ function App(props) {
     return (
       <div className="App">
         <div className="container m-24">
-          <p>Data view unavailable.</p>
-          <a href={props.view.resources[0].path} className="text-primary font-bold">Download the data.</a>
+          <p>{props.view.resources[0].errorMessage || 'Data view unavailable.'}</p>
+          <a href={props.view.resources[0].downloadPath || props.view.resources[0].path} className="text-primary font-bold">Download the data.</a>
         </div>
       </div>
     )
