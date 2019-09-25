@@ -24,7 +24,7 @@ function App(props) {
     return (
       <div className="App">
         <div className="container m-24">
-          <Map featureCollection={_data} />
+          <Map data={_data} />
         </div>
       </div>
     )
