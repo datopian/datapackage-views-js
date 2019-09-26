@@ -61,17 +61,22 @@ for (const instance of instances) {
             file.descriptor.errorMessage = 'Content is too large to be previewed.'
           }
         } else {
-          const result = await response.json()
-          // The '.json' files can contain geo data - check by its 'type' property
-          const geoJsonTypes = [
-            'Feature', 'FeatureCollection', 'Point', 'MultiPoint', 'LineString',
-            'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'
-          ]
-          if (geoJsonTypes.includes(result.type)) {
-            file.descriptor.data = result
-          } else {
-            // It isn't a valid GeoJSON
+          try {
+            const result = await response.json()
+            // The '.json' files can contain geo data - check by its 'type' property
+            const geoJsonTypes = [
+              'Feature', 'FeatureCollection', 'Point', 'MultiPoint', 'LineString',
+              'MultiLineString', 'Polygon', 'MultiPolygon', 'GeometryCollection'
+            ]
+            if (geoJsonTypes.includes(result.type)) {
+              file.descriptor.data = result
+            } else {
+              // It isn't a valid GeoJSON
+              file.descriptor.unavailable = true
+            }
+          } catch (e) {
             file.descriptor.unavailable = true
+            file.descriptor.errorMessage = e.toString()
           }
         }
       } else if (file.descriptor.format.toLowerCase() === 'pdf') {
