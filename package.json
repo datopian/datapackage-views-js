@@ -1,6 +1,6 @@
 {
   "name": "datapackage-views-js",
-  "version": "0.0.8",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@handsontable/react": "^3.0.0",
