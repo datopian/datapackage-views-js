@@ -232,7 +232,8 @@ it('doesnt crash if no geo data is found', () => {
         "a": 3,
         "b": 4
       }
-    ]
+    ],
+    "totalrowcount":4
   }
   const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
