@@ -249,7 +249,8 @@ it('doesnt crash if no geo data is found', function () {
     }, {
       "a": 3,
       "b": 4
-    }]
+    }],
+    "totalrowcount": 4
   };
 
   var _render10 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
