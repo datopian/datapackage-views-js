@@ -68,6 +68,7 @@ export default class Table extends React.Component {
         </div>
 
         <HotTable data={this.state.data} width="100%" height="300" settings={this.state.settings} />
+        { this.state.settings.totalrowcount && <div align="right">Showing rows 1-{ this.state.settings.rowcount } out of { this.state.settings.totalrowcount }</div> }
       </div>
     )
   }

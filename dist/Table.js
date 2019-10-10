@@ -113,7 +113,9 @@ function (_React$Component) {
         width: "100%",
         height: "300",
         settings: this.state.settings
-      }));
+      }), this.state.settings.totalrowcount && _react.default.createElement("div", {
+        align: "right"
+      }, "Showing rows 1-", this.state.settings.rowcount, " out of ", this.state.settings.totalrowcount));
     }
   }]);
 

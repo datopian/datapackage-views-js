@@ -32,7 +32,8 @@ const datapackage = {
               5,
               6
             ]
-          ]
+          ],
+          "totalrowcount":4
         }
       ],
       "specType": "table"
