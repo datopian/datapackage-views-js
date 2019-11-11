@@ -164,7 +164,18 @@ function DataView(props) {
           })
         };
       }
-    } else if (view.resources[0].unavailable) {
+    } else if (view.specType === 'web') {
+      var src = view.page_url || view.resources[0].path;
+      return {
+        v: _react.default.createElement("div", {
+          className: "App"
+        }, _react.default.createElement("iframe", {
+          src: src,
+          width: "100%",
+          height: "475px"
+        }, "Your browser doesn't support \"iframe\"."))
+      };
+    } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
       return {
         v: _react.default.createElement("div", {
           className: "App"

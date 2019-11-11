@@ -333,3 +333,15 @@ it('vega does not crash', function () {
 
   expect(container.firstChild).toMatchSnapshot();
 });
+it('renders an iframe for web spec type', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'web';
+  copyOfDp.views[0].page_url = 'http://example.com';
+
+  var _render15 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render15.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});
