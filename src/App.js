@@ -99,7 +99,16 @@ export function DataView(props) {
       } catch (e) {
         return (<div className={e}></div>)
       }
-    } else if (view.resources[0].unavailable) {
+    } else if (view.specType === 'web') {
+      const src = view.page_url || view.resources[0].path
+      return (
+        <div className="App">
+          <iframe src={src} width="100%" height="475px">
+            Your browser doesn't support "iframe".
+          </iframe>
+        </div>
+      )
+    } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
       return (
         <div className="App">
           <div className="container m-24">

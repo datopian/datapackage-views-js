@@ -295,3 +295,11 @@ it('vega does not crash', () => {
   const { container } = render(<DataView datapackage={copyOfDp} />)
   expect(container.firstChild).toMatchSnapshot()
 })
+
+it('renders an iframe for web spec type', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'web'
+  copyOfDp.views[0].page_url = 'http://example.com'
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})

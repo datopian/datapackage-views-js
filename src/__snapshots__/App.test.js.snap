@@ -694,6 +694,20 @@ exports[`renders a preview table with custom headers 1`] = `
 </table>
 `;
 
+exports[`renders an iframe for web spec type 1`] = `
+<div
+  class="App"
+>
+  <iframe
+    height="475px"
+    src="http://example.com"
+    width="100%"
+  >
+    Your browser doesn't support "iframe".
+  </iframe>
+</div>
+`;
+
 exports[`renders spinner 1`] = `
 <svg
   fill="#D3D3D3"
