@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/datopian/datapackage-views-js.svg?branch=master)](https://travis-ci.org/datopian/datapackage-views-js)  [![Coverage Status](https://coveralls.io/repos/github/datopian/datapackage-views-js/badge.svg?branch=master)](https://coveralls.io/github/datopian/datapackage-views-js?branch=master)
+[![Build Status](https://travis-ci.org/datopian/datapackage-views-js.svg?branch=master)](https://travis-ci.org/datopian/datapackage-views-js)
+[![Coverage Status](https://coveralls.io/repos/github/datopian/datapackage-views-js/badge.svg?branch=master)](https://coveralls.io/github/datopian/datapackage-views-js?branch=master)
+[![npm version](https://badge.fury.io/js/%40datopian%2Fdatapackage-views-js.svg)](https://badge.fury.io/js/%40datopian%2Fdatapackage-views-js)
 
 # datapackage-views-js
 Welcome to datapackage-views-js, a views library for frictionless data and ckan data resources.
