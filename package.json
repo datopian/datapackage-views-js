@@ -6,7 +6,6 @@
   "module": "/dist/App.js",
   "dependencies": {
     "@handsontable/react": "^3.0.0",
-    "data.js": "^0.12.8",
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "handsontable": "^7.1.0",
     "leaflet": "^1.5.1",
