@@ -1,7 +1,7 @@
 import React from "react"
-import { HotTable } from "@handsontable/react"
+import ReactTable from 'react-table-v6'
+import 'react-table-v6/react-table.css'
 import { CSVLink } from "react-csv"
-import "./Table.css"
 
 
 export default class Table extends React.Component {
@@ -9,9 +9,7 @@ export default class Table extends React.Component {
     super(props);
     this.state = {
       data: this.props.data,
-      settings: Object.assign({}, this.props.options, {
-        licenseKey: "non-commercial-and-evaluation"
-      })
+      schema: Object.assign({}, this.props.schema)
     };
   }
 
@@ -21,55 +19,35 @@ export default class Table extends React.Component {
     })
   }
 
-  addSettings = (settings) => {
-    this.setState({
-      settings: Object.assign({}, this.state.settings, settings)
-    })
-  }
-
-  downloadJson = () => {
-    let data = this.state.data
-    // If rows are arrays, we want to convert to objects:
-    if (data && Array.isArray(data[0])) {
-      const headers = this.state.settings.colHeaders
-      data = data.map(function(x) {
-        const row = {}
-        headers.forEach((header, i) => {
-          row[header] = x[i]
-        })
-        return row
-      })
-    }
-    data = JSON.stringify(data, null, 2)
-    const blob = new Blob([data], {type:'application/json'})
-    const link = document.createElement('a')
-    link.href = URL.createObjectURL(blob)
-    link.download = `${this.state.settings.viewTitle}.json`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  getFieldObject = (name) => {
+    return this.state.schema.fields
+      ? this.state.schema.fields.find(field => field.name === name)
+      : null
   }
 
   render() {
     return (
-      <div>
-        <div className="downloadables hidden">
-          <span>Download preview data:</span>
-          <CSVLink
-            data={this.state.data}
-            headers={this.state.settings.colHeaders}
-            filename={`${this.state.settings.viewTitle}.csv`}
-            className="btn btn-primary"
-            target="_blank"
-          >
-            CSV (Excel)
-          </CSVLink>
-          <button onClick={this.downloadJson} className="btn btn-primary">JSON</button>
-        </div>
-
-        <HotTable data={this.state.data} width="100%" height="300" settings={this.state.settings} />
-        { this.state.settings.totalrowcount && <div align="right">Showing rows 1-{ this.state.settings.rowcount } out of { this.state.settings.totalrowcount }</div> }
-      </div>
+      <ReactTable
+        data={this.state.data}
+        columns={Object.keys(this.state.data[0]).map(key => {
+          return {
+            Header: this.getFieldObject(key)
+              ? (this.getFieldObject(key).title || key)
+              : key,
+            accessor: key,
+            Cell: props => <div className={
+              this.getFieldObject(key)
+                ? this.getFieldObject(key).type
+                : ''}>
+              <span>{props.value}</span>
+            </div>
+          }
+        })}
+        getTheadThProps={() => {
+          return {style: {"wordWrap": "break-word", "whiteSpace": "initial"}}
+        }}
+        showPagination={false}
+      />
     )
   }
 }

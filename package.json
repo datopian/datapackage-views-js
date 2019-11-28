@@ -5,9 +5,7 @@
   "main": "/dist/App.js",
   "module": "/dist/App.js",
   "dependencies": {
-    "@handsontable/react": "^3.0.0",
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
-    "handsontable": "^7.1.0",
     "leaflet": "^1.5.1",
     "plotly.js-basic-dist": "^1.49.2",
     "react": "^16.8.6",
@@ -18,6 +16,7 @@
     "react-pdf-js": "^5.1.0",
     "react-plotly.js": "^2.3.0",
     "react-scripts": "3.0.1",
+    "react-table-v6": "^6.8.6",
     "react-vega": "4.0.2",
     "vega-lib": "4.4.0"
   },

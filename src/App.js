@@ -6,7 +6,7 @@ import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
 import Chart from './Chart.js'
-import {handsOnTableToHandsOnTable, simpleToPlotly, vegaToVega} from 'datapackage-render'
+import {getResourceCachedValues, simpleToPlotly, vegaToVega} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 import tableToGeoData from './utils'
 
@@ -14,14 +14,12 @@ export function DataView(props) {
   if (props.loading) {
     return (
       <div className="App">
-        <div className="container m-24">
-          <Loader
-             type="Grid"
-             color="#D3D3D3"
-             height="50"
-             width="50"
-          />
-        </div>
+        <Loader
+           type="Grid"
+           color="#D3D3D3"
+           height="50"
+           width="50"
+        />
       </div>
     )
   }
@@ -35,20 +33,17 @@ export function DataView(props) {
       view.resources[0]._values = view.resources[0].data
     }
     if (view.specType === 'table' && view.resources[0]._values) {
-      let {data, ...options} = handsOnTableToHandsOnTable(view)
+      const data = getResourceCachedValues(view.resources[0], true)
+      const schema = view.resources[0].schema || {}
       return (
         <div className="App">
-          <div className="container m-24">
-            <Table data={data} options={options} ref={(table) => {window[`table${view.id}`] = table}} />
-          </div>
+          <Table data={data} schema={schema} />
         </div>
       )
     } else if (view.specType === 'map' && view.resources[0]._values) {
       return (
         <div className="App">
-          <div className="container m-24">
-            <Map data={view.resources[0]._values} />
-          </div>
+          <Map data={view.resources[0]._values} />
         </div>
       )
     } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
@@ -57,9 +52,7 @@ export function DataView(props) {
         geoData = tableToGeoData(view)
         return (
           <div className="App">
-            <div className="container m-24">
-              <Map data={geoData} />
-            </div>
+            <Map data={geoData} />
           </div>
         )
       } catch (e) {
@@ -68,9 +61,7 @@ export function DataView(props) {
     } else if (view.specType === 'document') {
       return (
         <div className="App">
-          <div className="container m-24">
-            <PdfViewer file={view.resources[0].path} />
-          </div>
+          <PdfViewer file={view.resources[0].path} />
         </div>
       )
     } else if (view.specType === 'simple') {
@@ -80,9 +71,7 @@ export function DataView(props) {
         if (plotlySpec) {
           return (
             <div className="App">
-              <div className="container m-24">
-                <Chart spec={plotlySpec} />
-              </div>
+              <Chart spec={plotlySpec} />
             </div>
           )
         }
@@ -111,10 +100,8 @@ export function DataView(props) {
     } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
       return (
         <div className="App">
-          <div className="container m-24">
-            <p>Data view unavailable.</p>
-            <a href={view.resources[0].path} className="text-primary font-bold">Download the data.</a>
-          </div>
+          <p>Data view unavailable.</p>
+          <a href={view.resources[0].path} className="text-primary font-bold">Download the data.</a>
         </div>
       )
     }

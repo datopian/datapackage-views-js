@@ -33,6 +33,14 @@ const datapackage = {
               6
             ]
           ],
+          "schema": {
+            "fields": [
+              {name: "a", type: "number"},
+              {name: "b", type: "number"},
+              {name: "c", type: "number"},
+              {name: "d", type: "any"}
+            ]
+          },
           "totalrowcount":4
         }
       ],
