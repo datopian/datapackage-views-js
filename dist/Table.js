@@ -7,11 +7,11 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _react2 = require("@handsontable/react");
+var _reactTableV = _interopRequireDefault(require("react-table-v6"));
+
+require("react-table-v6/react-table.css");
 
 var _reactCsv = require("react-csv");
-
-require("./Table.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53,43 +53,15 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "addSettings", function (settings) {
-      _this.setState({
-        settings: Object.assign({}, _this.state.settings, settings)
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "downloadJson", function () {
-      var data = _this.state.data; // If rows are arrays, we want to convert to objects:
-
-      if (data && Array.isArray(data[0])) {
-        var headers = _this.state.settings.colHeaders;
-        data = data.map(function (x) {
-          var row = {};
-          headers.forEach(function (header, i) {
-            row[header] = x[i];
-          });
-          return row;
-        });
-      }
-
-      data = JSON.stringify(data, null, 2);
-      var blob = new Blob([data], {
-        type: 'application/json'
-      });
-      var link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = "".concat(_this.state.settings.viewTitle, ".json");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    _defineProperty(_assertThisInitialized(_this), "getFieldObject", function (name) {
+      return _this.state.schema.fields ? _this.state.schema.fields.find(function (field) {
+        return field.name === name;
+      }) : null;
     });
 
     _this.state = {
       data: _this.props.data,
-      settings: Object.assign({}, _this.props.options, {
-        licenseKey: "non-commercial-and-evaluation"
-      })
+      schema: Object.assign({}, _this.props.schema)
     };
     return _this;
   }
@@ -97,25 +69,31 @@ function (_React$Component) {
   _createClass(Table, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("div", {
-        className: "downloadables hidden"
-      }, _react.default.createElement("span", null, "Download preview data:"), _react.default.createElement(_reactCsv.CSVLink, {
+      var _this2 = this;
+
+      return _react.default.createElement(_reactTableV.default, {
         data: this.state.data,
-        headers: this.state.settings.colHeaders,
-        filename: "".concat(this.state.settings.viewTitle, ".csv"),
-        className: "btn btn-primary",
-        target: "_blank"
-      }, "CSV (Excel)"), _react.default.createElement("button", {
-        onClick: this.downloadJson,
-        className: "btn btn-primary"
-      }, "JSON")), _react.default.createElement(_react2.HotTable, {
-        data: this.state.data,
-        width: "100%",
-        height: "300",
-        settings: this.state.settings
-      }), this.state.settings.totalrowcount && _react.default.createElement("div", {
-        align: "right"
-      }, "Showing rows 1-", this.state.settings.rowcount, " out of ", this.state.settings.totalrowcount));
+        columns: Object.keys(this.state.data[0]).map(function (key) {
+          return {
+            Header: _this2.getFieldObject(key) ? _this2.getFieldObject(key).title || key : key,
+            accessor: key,
+            Cell: function Cell(props) {
+              return _react.default.createElement("div", {
+                className: _this2.getFieldObject(key) ? _this2.getFieldObject(key).type : ''
+              }, _react.default.createElement("span", null, props.value));
+            }
+          };
+        }),
+        getTheadThProps: function getTheadThProps() {
+          return {
+            style: {
+              "wordWrap": "break-word",
+              "whiteSpace": "initial"
+            }
+          };
+        },
+        showPagination: false
+      });
     }
   }]);
 

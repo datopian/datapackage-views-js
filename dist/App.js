@@ -29,24 +29,16 @@ var _utils = _interopRequireDefault(require("./utils"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function DataView(props) {
   if (props.loading) {
     return _react.default.createElement("div", {
       className: "App"
-    }, _react.default.createElement("div", {
-      className: "container m-24"
     }, _react.default.createElement(_reactLoaderSpinner.default, {
       type: "Grid",
       color: "#D3D3D3",
       height: "50",
       width: "50"
-    })));
+    }));
   }
 
   var countViews = props.datapackage.views ? props.datapackage.views.length : 0;
@@ -57,7 +49,7 @@ function DataView(props) {
     }, "No views available");
   }
 
-  var _loop = function _loop(i) {
+  for (var i = 0; i < countViews; i++) {
     var view = props.datapackage.views[i];
 
     if (!view.resources[0]._values && view.resources[0].data) {
@@ -65,133 +57,88 @@ function DataView(props) {
     }
 
     if (view.specType === 'table' && view.resources[0]._values) {
-      var _handsOnTableToHandsO = (0, _datapackageRender.handsOnTableToHandsOnTable)(view),
-          data = _handsOnTableToHandsO.data,
-          options = _objectWithoutProperties(_handsOnTableToHandsO, ["data"]);
-
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("div", {
-          className: "container m-24"
-        }, _react.default.createElement(_Table.default, {
-          data: data,
-          options: options,
-          ref: function ref(table) {
-            window["table".concat(view.id)] = table;
-          }
-        })))
-      };
+      var data = (0, _datapackageRender.getResourceCachedValues)(view.resources[0], true);
+      var schema = view.resources[0].schema || {};
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement(_Table.default, {
+        data: data,
+        schema: schema
+      }));
     } else if (view.specType === 'map' && view.resources[0]._values) {
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("div", {
-          className: "container m-24"
-        }, _react.default.createElement(_Map.default, {
-          data: view.resources[0]._values
-        })))
-      };
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement(_Map.default, {
+        data: view.resources[0]._values
+      }));
     } else if (view.specType === 'tabularmap' && view.resources[0]._values) {
-      var geoData;
+      var geoData = void 0;
 
       try {
         geoData = (0, _utils.default)(view);
-        return {
-          v: _react.default.createElement("div", {
-            className: "App"
-          }, _react.default.createElement("div", {
-            className: "container m-24"
-          }, _react.default.createElement(_Map.default, {
-            data: geoData
-          })))
-        };
+        return _react.default.createElement("div", {
+          className: "App"
+        }, _react.default.createElement(_Map.default, {
+          data: geoData
+        }));
       } catch (e) {
-        return {
-          v: _react.default.createElement("div", {
-            className: e
-          })
-        };
+        return _react.default.createElement("div", {
+          className: e
+        });
       }
     } else if (view.specType === 'document') {
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("div", {
-          className: "container m-24"
-        }, _react.default.createElement(_Document.default, {
-          file: view.resources[0].path
-        })))
-      };
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement(_Document.default, {
+        file: view.resources[0].path
+      }));
     } else if (view.specType === 'simple') {
-      var plotlySpec;
+      var plotlySpec = void 0;
 
       try {
         plotlySpec = (0, _datapackageRender.simpleToPlotly)(view);
 
         if (plotlySpec) {
-          return {
-            v: _react.default.createElement("div", {
-              className: "App"
-            }, _react.default.createElement("div", {
-              className: "container m-24"
-            }, _react.default.createElement(_Chart.default, {
-              spec: plotlySpec
-            })))
-          };
+          return _react.default.createElement("div", {
+            className: "App"
+          }, _react.default.createElement(_Chart.default, {
+            spec: plotlySpec
+          }));
         }
       } catch (e) {
-        return {
-          v: _react.default.createElement("div", {
-            className: e
-          })
-        };
+        return _react.default.createElement("div", {
+          className: e
+        });
       }
     } else if (view.specType === 'vega') {
-      var vegaSpec;
+      var vegaSpec = void 0;
 
       try {
         vegaSpec = (0, _datapackageRender.vegaToVega)(view);
-        return {
-          v: _react.default.createElement(_reactVega.default, {
-            spec: vegaSpec
-          })
-        };
+        return _react.default.createElement(_reactVega.default, {
+          spec: vegaSpec
+        });
       } catch (e) {
-        return {
-          v: _react.default.createElement("div", {
-            className: e
-          })
-        };
+        return _react.default.createElement("div", {
+          className: e
+        });
       }
     } else if (view.specType === 'web') {
       var src = view.page_url || view.resources[0].path;
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("iframe", {
-          src: src,
-          width: "100%",
-          height: "475px"
-        }, "Your browser doesn't support \"iframe\"."))
-      };
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement("iframe", {
+        src: src,
+        width: "100%",
+        height: "475px"
+      }, "Your browser doesn't support \"iframe\"."));
     } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
-      return {
-        v: _react.default.createElement("div", {
-          className: "App"
-        }, _react.default.createElement("div", {
-          className: "container m-24"
-        }, _react.default.createElement("p", null, "Data view unavailable."), _react.default.createElement("a", {
-          href: view.resources[0].path,
-          className: "text-primary font-bold"
-        }, "Download the data.")))
-      };
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement("p", null, "Data view unavailable."), _react.default.createElement("a", {
+        href: view.resources[0].path,
+        className: "text-primary font-bold"
+      }, "Download the data."));
     }
-  };
-
-  for (var i = 0; i < countViews; i++) {
-    var _ret = _loop(i);
-
-    if (_typeof(_ret) === "object") return _ret.v;
   }
 }

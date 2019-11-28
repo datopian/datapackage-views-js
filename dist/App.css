@@ -18,3 +18,8 @@
 .App-link {
   color: #61dafb;
 }
+
+/* Table */
+.rt-td .number, .integer {
+  text-align: right;
+}
