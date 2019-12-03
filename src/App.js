@@ -6,7 +6,7 @@ import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
 import Chart from './Chart.js'
-import {getResourceCachedValues, simpleToPlotly, vegaToVega} from 'datapackage-render'
+import {getResourceCachedValues, simpleToPlotly, plotlyToPlotly, vegaToVega} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 import tableToGeoData from './utils'
 
@@ -73,6 +73,20 @@ export function DataView(props) {
             <div className="App">
               <Chart spec={plotlySpec} />
             </div>
+          )
+        }
+      } catch (e) {
+        return (<div className={e}></div>)
+      }
+    } else if (view.specType === 'plotly') {
+      let plotlySpec
+      try {
+        plotlySpec = plotlyToPlotly(view)
+        if (plotlySpec) {
+          return (
+              <div className="App">
+                <Chart spec={plotlySpec} />
+              </div>
           )
         }
       } catch (e) {
