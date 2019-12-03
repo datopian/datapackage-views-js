@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 .*.sw*
 __fixtures__/*.json
+
+cosmos-export
