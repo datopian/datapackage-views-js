@@ -289,6 +289,38 @@ it('does not crash if spec is missing for a Chart', () => {
   expect(container.firstChild).toMatchSnapshot()
 })
 
+it('renders plotly specType', () => {
+  const copyOfDp = JSON.parse(JSON.stringify(datapackage))
+  copyOfDp.views[0].specType = 'plotly'
+  copyOfDp.views[0].spec = {
+    type: 'line',
+    group: 'a',
+    series: ['b'],
+    layout: {"title": "Plotly Layout Title"}
+  }
+  copyOfDp.views[0].resources[0] = {
+    name: 'gdp',
+    data: [
+      {a:1, b:2},
+      {a:3, b:4}
+    ],
+    schema: {
+      fields: [
+        {
+          name: 'a',
+          type: 'integer'
+        },
+        {
+          name: 'b',
+          type: 'integer'
+        }
+      ]
+    }
+  }
+  const { container } = render(<DataView datapackage={copyOfDp} />)
+  expect(container.firstChild).toMatchSnapshot()
+})
+
 it('vega does not crash', () => {
   const copyOfDp = JSON.parse(JSON.stringify(datapackage))
   copyOfDp.views[0].specType = 'vega'

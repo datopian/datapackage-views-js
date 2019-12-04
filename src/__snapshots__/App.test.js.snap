@@ -596,6 +596,16 @@ exports[`renders an iframe for web spec type 1`] = `
 </div>
 `;
 
+exports[`renders plotly specType 1`] = `
+<div
+  class="App"
+>
+  <div>
+    Stubbed Chart
+  </div>
+</div>
+`;
+
 exports[`renders spinner 1`] = `
 <svg
   fill="#D3D3D3"
