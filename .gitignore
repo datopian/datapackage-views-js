@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/build
 /dist/js/main.js.map
 
 # misc
