@@ -12,6 +12,6 @@ export default function (props) {
   }
 
   return (
-    <Plot data={props.spec.data} layout={props.spec.layout} config={props.spec.config}/>
+    <Plot {...props.spec}/>
   )
 }
