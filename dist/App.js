@@ -110,6 +110,24 @@ function DataView(props) {
           className: e
         });
       }
+    } else if (view.specType === 'plotly') {
+      var _plotlySpec = void 0;
+
+      try {
+        _plotlySpec = (0, _datapackageRender.plotlyToPlotly)(view);
+
+        if (_plotlySpec) {
+          return _react.default.createElement("div", {
+            className: "App"
+          }, _react.default.createElement(_Chart.default, {
+            spec: _plotlySpec
+          }));
+        }
+      } catch (e) {
+        return _react.default.createElement("div", {
+          className: e
+        });
+      }
     } else if (view.specType === 'vega') {
       var vegaSpec = void 0;
 
