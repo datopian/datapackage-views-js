@@ -322,9 +322,36 @@ it('does not crash if spec is missing for a Chart', function () {
 
   expect(container.firstChild).toMatchSnapshot();
 });
-it('vega does not crash', function () {
+it('renders plotly specType', function () {
   var copyOfDp = JSON.parse(JSON.stringify(datapackage));
-  copyOfDp.views[0].specType = 'vega';
+  copyOfDp.views[0].specType = 'plotly';
+  copyOfDp.views[0].spec = {
+    type: 'line',
+    group: 'a',
+    series: ['b'],
+    layout: {
+      "title": "Plotly Layout Title"
+    }
+  };
+  copyOfDp.views[0].resources[0] = {
+    name: 'gdp',
+    data: [{
+      a: 1,
+      b: 2
+    }, {
+      a: 3,
+      b: 4
+    }],
+    schema: {
+      fields: [{
+        name: 'a',
+        type: 'integer'
+      }, {
+        name: 'b',
+        type: 'integer'
+      }]
+    }
+  };
 
   var _render14 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
@@ -333,15 +360,26 @@ it('vega does not crash', function () {
 
   expect(container.firstChild).toMatchSnapshot();
 });
-it('renders an iframe for web spec type', function () {
+it('vega does not crash', function () {
   var copyOfDp = JSON.parse(JSON.stringify(datapackage));
-  copyOfDp.views[0].specType = 'web';
-  copyOfDp.views[0].page_url = 'http://example.com';
+  copyOfDp.views[0].specType = 'vega';
 
   var _render15 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
     datapackage: copyOfDp
   })),
       container = _render15.container;
+
+  expect(container.firstChild).toMatchSnapshot();
+});
+it('renders an iframe for web spec type', function () {
+  var copyOfDp = JSON.parse(JSON.stringify(datapackage));
+  copyOfDp.views[0].specType = 'web';
+  copyOfDp.views[0].page_url = 'http://example.com';
+
+  var _render16 = (0, _react2.render)(_react.default.createElement(_index.DataView, {
+    datapackage: copyOfDp
+  })),
+      container = _render16.container;
 
   expect(container.firstChild).toMatchSnapshot();
 });
