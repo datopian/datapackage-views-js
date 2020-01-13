@@ -1,3 +1,4 @@
+import i18n from "./i18n/i18n"
 import React from "react"
 import Vega from 'react-vega';
 import './index.css'
@@ -9,8 +10,12 @@ import Chart from './Chart.js'
 import {getResourceCachedValues, simpleToPlotly, plotlyToPlotly, vegaToVega} from 'datapackage-render'
 import Loader from 'react-loader-spinner'
 import tableToGeoData from './utils'
+import {useTranslation} from "react-i18next"
 
 export function DataView(props) {
+
+  const { t } = useTranslation();
+
   if (props.loading) {
     return (
       <div className="App">
@@ -25,7 +30,7 @@ export function DataView(props) {
   }
   const countViews = props.datapackage.views ? props.datapackage.views.length : 0
   if (countViews === 0) {
-    return (<div className="App">No views available</div>)
+    return (<div className="App">{t('No views available')}</div>)
   }
   for (let i = 0; i < countViews; i++) {
     const view = props.datapackage.views[i]
@@ -107,15 +112,15 @@ export function DataView(props) {
       return (
         <div className="App">
           <iframe src={src} width="100%" height="475px">
-            Your browser doesn't support "iframe".
+            {t('Your browser doesn\'t support "iframe".')}
           </iframe>
         </div>
       )
     } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
       return (
         <div className="App">
-          <p>Data view unavailable.</p>
-          <a href={view.resources[0].path} className="text-primary font-bold">Download the data.</a>
+          <p>{t('Data view unavailable.')}</p>
+          <a href={view.resources[0].path} className="text-primary font-bold">{t('Download the data.')}</a>
         </div>
       )
     }

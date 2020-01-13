@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePdf } from 'react-pdf-js';
+import {useTranslation} from "react-i18next"
 
 const PdfViewer = (props) => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(null);
+
+  const { t } = useTranslation();
 
   const renderPagination = (page, pages) => {
     if (!pages) {
@@ -41,7 +44,7 @@ const PdfViewer = (props) => {
 
   return (
     <div>
-      {loading && <span>Loading...</span>}
+      {loading && <span>{t('Loading...')}</span>}
       <canvas ref={canvasEl} />
       {renderPagination(page, pages)}
     </div>
