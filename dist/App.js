@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DataView = DataView;
 
+require("./i18n/i18n");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactVega = _interopRequireDefault(require("react-vega"));
@@ -27,9 +29,14 @@ var _reactLoaderSpinner = _interopRequireDefault(require("react-loader-spinner")
 
 var _utils = _interopRequireDefault(require("./utils"));
 
+var _reactI18next = require("react-i18next");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function DataView(props) {
+  var _useTranslation = (0, _reactI18next.useTranslation)(),
+      t = _useTranslation.t;
+
   if (props.loading) {
     return _react.default.createElement("div", {
       className: "App"
@@ -46,7 +53,7 @@ function DataView(props) {
   if (countViews === 0) {
     return _react.default.createElement("div", {
       className: "App"
-    }, "No views available");
+    }, t('No views available'));
   }
 
   for (var i = 0; i < countViews; i++) {
@@ -110,6 +117,24 @@ function DataView(props) {
           className: e
         });
       }
+    } else if (view.specType === 'plotly') {
+      var _plotlySpec = void 0;
+
+      try {
+        _plotlySpec = (0, _datapackageRender.plotlyToPlotly)(view);
+
+        if (_plotlySpec) {
+          return _react.default.createElement("div", {
+            className: "App"
+          }, _react.default.createElement(_Chart.default, {
+            spec: _plotlySpec
+          }));
+        }
+      } catch (e) {
+        return _react.default.createElement("div", {
+          className: e
+        });
+      }
     } else if (view.specType === 'vega') {
       var vegaSpec = void 0;
 
@@ -131,14 +156,14 @@ function DataView(props) {
         src: src,
         width: "100%",
         height: "475px"
-      }, "Your browser doesn't support \"iframe\"."));
+      }, t('Your browser doesn\'t support "iframe".')));
     } else if (view.resources[0].unavailable || view.specType === 'unsupported') {
       return _react.default.createElement("div", {
         className: "App"
-      }, _react.default.createElement("p", null, "Data view unavailable."), _react.default.createElement("a", {
+      }, _react.default.createElement("p", null, t('Data view unavailable.')), _react.default.createElement("a", {
         href: view.resources[0].path,
         className: "text-primary font-bold"
-      }, "Download the data."));
+      }, t('Download the data.')));
     }
   }
 }
