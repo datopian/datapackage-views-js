@@ -9,6 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactPdfJs = require("react-pdf-js");
 
+var _reactI18next = require("react-i18next");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -29,6 +31,9 @@ var PdfViewer = function PdfViewer(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       pages = _useState4[0],
       setPages = _useState4[1];
+
+  var _useTranslation = (0, _reactI18next.useTranslation)(),
+      t = _useTranslation.t;
 
   var renderPagination = function renderPagination(page, pages) {
     if (!pages) {
@@ -96,7 +101,7 @@ var PdfViewer = function PdfViewer(props) {
   (0, _react.useEffect)(function () {
     setPages(numPages);
   }, [numPages]);
-  return _react.default.createElement("div", null, loading && _react.default.createElement("span", null, "Loading..."), _react.default.createElement("canvas", {
+  return _react.default.createElement("div", null, loading && _react.default.createElement("span", null, t('Loading...')), _react.default.createElement("canvas", {
     ref: canvasEl
   }), renderPagination(page, pages));
 };

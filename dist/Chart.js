@@ -17,6 +17,7 @@ function _default(props) {
   var Plot = (0, _factory.default)(_plotly.default);
   return _react.default.createElement(Plot, {
     data: props.spec.data,
-    layout: props.spec.layout
+    layout: props.spec.layout,
+    config: props.spec.config
   });
 }
