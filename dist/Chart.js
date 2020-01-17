@@ -14,10 +14,13 @@ var _factory = _interopRequireDefault(require("react-plotly.js/factory"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _default(props) {
-  var Plot = (0, _factory.default)(_plotly.default);
-  return _react.default.createElement(Plot, {
-    data: props.spec.data,
-    layout: props.spec.layout,
-    config: props.spec.config
-  });
+  var Plot = (0, _factory.default)(_plotly.default); // removes produced with plotly logo by default
+
+  if (!props.spec.config || !props.spec.config.displaylogo) {
+    props.spec.config = Object.assign(props.spec.config || {}, {
+      displaylogo: false
+    });
+  }
+
+  return _react.default.createElement(Plot, props.spec);
 }
