@@ -36,6 +36,7 @@
     "coverage": "cat coverage/lcov.info | coveralls",
     "test": "rescripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js && npm run coverage",
     "test:watch": "rescripts test",
+    "test:only": "rescripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "babel": {
