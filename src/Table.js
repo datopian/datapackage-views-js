@@ -29,7 +29,7 @@ export default class Table extends React.Component {
     return (
       <ReactTable
         data={this.state.data}
-        columns={Object.keys(this.state.data[0]).map(key => {
+        columns={Object.keys(this.state.data[0] || {}).map(key => {
           return {
             Header: this.getFieldObject(key)
               ? (this.getFieldObject(key).title || key)
