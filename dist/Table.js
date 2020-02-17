@@ -73,7 +73,7 @@ function (_React$Component) {
 
       return _react.default.createElement(_reactTableV.default, {
         data: this.state.data,
-        columns: Object.keys(this.state.data[0]).map(function (key) {
+        columns: Object.keys(this.state.data[0] || {}).map(function (key) {
           return {
             Header: _this2.getFieldObject(key) ? _this2.getFieldObject(key).title || key : key,
             accessor: key,
