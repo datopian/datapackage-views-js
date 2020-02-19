@@ -15,6 +15,8 @@ var _translation = _interopRequireDefault(require("./locales/en/translation.json
 
 var _translation2 = _interopRequireDefault(require("./locales/da/translation.json"));
 
+var _translation3 = _interopRequireDefault(require("./locales/fr/translation.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _i18next.default.use(_i18nextBrowserLanguagedetector.default).use(_reactI18next.initReactI18next) // init i18next
@@ -36,6 +38,9 @@ _i18next.default.use(_i18nextBrowserLanguagedetector.default).use(_reactI18next.
     },
     da: {
       translation: _translation2.default
+    },
+    fr: {
+      translation: _translation3.default
     }
   },
   react: {
