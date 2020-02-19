@@ -1,0 +1,14 @@
+{
+  "No views available": "Aucune vue disponible",
+  "Your browser doesn't support \"iframe\".": "Votre navigateur ne supporte pas les iframes.",
+  "Data view unavailable.": "Vue sur les données absentes.",
+  "Download the data.": "Télécharger les données",
+  "Loading...": "Chargement...",
+  "Invalid lon/lat values": "Valeurs long/lat invalides",
+  "No geo data found": "Aucune donnée géographique disponible",
+  "No geodata on resource": "Aucune donnée géographique dans la ressource",
+  "Previous": "Précédent",
+  "Next": "Suivant",
+  "Showing rows": "Extrait des lignes",
+  "Out of": "de"
+}
