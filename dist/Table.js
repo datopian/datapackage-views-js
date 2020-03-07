@@ -75,7 +75,7 @@ function (_React$Component) {
         data: this.state.data,
         columns: Object.keys(this.state.data[0] || {}).map(function (key) {
           return {
-            Header: _this2.getFieldObject(key) ? _this2.getFieldObject(key).title || key : key,
+            Header: key,
             accessor: key,
             Cell: function Cell(props) {
               return _react.default.createElement("div", {
@@ -92,7 +92,10 @@ function (_React$Component) {
             }
           };
         },
-        showPagination: false
+        showPagination: false,
+        defaultPageSize: 100,
+        showPageSizeOptions: false,
+        minRows: 10
       });
     }
   }]);
