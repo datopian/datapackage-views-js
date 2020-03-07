@@ -31,9 +31,7 @@ export default class Table extends React.Component {
         data={this.state.data}
         columns={Object.keys(this.state.data[0] || {}).map(key => {
           return {
-            Header: this.getFieldObject(key)
-              ? (this.getFieldObject(key).title || key)
-              : key,
+            Header: key,
             accessor: key,
             Cell: props => <div className={
               this.getFieldObject(key)

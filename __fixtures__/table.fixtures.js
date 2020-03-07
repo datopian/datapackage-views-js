@@ -35,7 +35,7 @@ const datapackage = {
           ],
           "schema": {
             "fields": [
-              {name: "a", type: "number"},
+              {name: "a", type: "number", title: "title of a"},
               {name: "b", type: "number"},
               {name: "c", type: "number"},
               {name: "d", type: "any"}
