@@ -123,6 +123,17 @@ export function DataView(props) {
           <a href={view.resources[0].path} className="text-primary font-bold">{t('Download the data.')}</a>
         </div>
       )
+    } else {
+      return (
+        <div className="App">
+          <Loader
+             type="Grid"
+             color="#D3D3D3"
+             height="50"
+             width="50"
+          />
+        </div>
+      )
     }
   }
 }

@@ -164,6 +164,15 @@ function DataView(props) {
         href: view.resources[0].path,
         className: "text-primary font-bold"
       }, t('Download the data.')));
+    } else {
+      return _react.default.createElement("div", {
+        className: "App"
+      }, _react.default.createElement(_reactLoaderSpinner.default, {
+        type: "Grid",
+        color: "#D3D3D3",
+        height: "50",
+        width: "50"
+      }));
     }
   }
 }
