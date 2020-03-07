@@ -47,6 +47,9 @@ export default class Table extends React.Component {
           return {style: {"wordWrap": "break-word", "whiteSpace": "initial"}}
         }}
         showPagination={false}
+        defaultPageSize={100}
+        showPageSizeOptions={false}
+        minRows={10}
       />
     )
   }
