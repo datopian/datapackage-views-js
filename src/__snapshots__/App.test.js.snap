@@ -8,7 +8,7 @@ exports[`does not crash if spec is missing for a Chart 1`] = `
 
 exports[`doesnt crash if no geo data is found 1`] = `
 <div
-  class="No geo data found"
+  class="No geodata on resource"
 />
 `;
 
