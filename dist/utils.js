@@ -41,7 +41,7 @@ function tableToGeoData(view) {
     view.resources[0]._values.forEach(function (data) {
       var feature; // If geometry field exists, parse and use it:
 
-      var geometryFieldNames = ['geojson', 'geom', 'the_geom', 'geometry', 'spatial', 'location', 'geo', 'lonlat'];
+      var geometryFieldNames = ['geojson', 'geom', 'the_geom', 'geometry', 'spatial', 'geo', 'lonlat'];
       var geometryField = view.resources[0].schema.fields.find(function (field) {
         return geometryFieldNames.includes(field.name.toLowerCase());
       });
@@ -87,6 +87,8 @@ function tableToGeoData(view) {
               feature.geometry.coordinates = data[geopointField.name];
             } else if (geopointField.format === 'object') {
               feature.geometry.coordinates = [data[geopointField.name]['lon'], data[geopointField.name]['lat']];
+            } else {
+              console.log('no format is provided for geometry field.');
             }
           } else {
             // now check for default fields
