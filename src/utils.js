@@ -29,79 +29,87 @@ function tableToGeoData(view) {
 
   if (view.resources[0]._values) {
     view.resources[0]._values.forEach(data => {
-      let feature
-      // If geometry field exists, parse and use it:
+      let feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: []
+        },
+        properties: {
+          name: ''
+        }
+      }
+
+      if (view.spec.infobox) {
+        feature.properties.name = eval('`' + view.spec.infobox + '`')
+      } else {
+        feature.properties.name = Object.keys(data).map(key => `${key}: ${data[key]}`).join('<br />')
+      }
+      // Add features based on spec:
+      // If lon and lat fields provided, just use it:
+      if (view.spec.lonField && view.spec.latField) {
+        try {
+          feature.geometry.coordinates = getLonLat(data, [view.spec.lonField, view.spec.latField])
+          geoData.features.push(feature)
+          return
+        } catch (e) {
+          // warn and skip this row if invalid
+          console.warn(e)
+          return
+        }
+      } else {
+        // Identify geopoint field based on tableschema
+        const geopointField = view.resources[0].schema.fields.find(field => {
+          return field.type === 'geopoint'
+        })
+        if (geopointField) { // geopoint field is given in tableschema
+          if (geopointField.format === 'default') {
+            // Value is a comma separated string, eg, "lon, lat"
+            feature.geometry.coordinates = data[geopointField.name]
+              .split(',')
+              .map(item => item.trim())
+          } else if (geopointField.format === 'array') {
+            feature.geometry.coordinates = data[geopointField.name]
+          } else if (geopointField.format === 'object') {
+            feature.geometry.coordinates = [
+              data[geopointField.name]['lon'],
+              data[geopointField.name]['lat']
+            ]
+          } else {
+            // No format is provided for geometry field.
+            feature.geometry = getGeometryFromRecord(data[geopointField.name])
+          }
+
+          geoData.features.push(feature)
+          return
+        }
+      }
+
+      // If geo data isn't defined in spec or tableschema, we try to guess it.
       const geometryFieldNames = ['geojson', 'geom','the_geom','geometry','spatial','geo', 'lonlat']
       const geometryField = view.resources[0].schema.fields.find(field => {
         return geometryFieldNames.includes(field.name.toLowerCase())
       })
       if (geometryField) {
-        feature = getGeometryFromRecord(data[geometryField.name])
-      } else {
-        // Add features based on spec:
-        feature = {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: []
-          },
-          properties: {
-            name: ''
-          }
-        }
-        // If lon and lat fields provided, just use it:
-        if (view.spec.lonField && view.spec.latField) {
-          try {
-            feature.geometry.coordinates = getLonLat(data, [view.spec.lonField, view.spec.latField])
-          } catch (e) {
-            // warn and skip this row if invalid
-            console.warn(e)
-            return
-          }
-        } else {
-          // Identify geopoint field based on tableschema
-          const geopointField = view.resources[0].schema.fields.find(field => {
-            return field.type === 'geopoint'
-          })
-          if (geopointField) { // geopoint field is given in tableschema
-            if (geopointField.format === 'default') {
-              // Value is a comma separated string, eg, "lon, lat"
-              feature.geometry.coordinates = data[geopointField.name]
-                .split(',')
-                .map(item => item.trim())
-            } else if (geopointField.format === 'array') {
-              feature.geometry.coordinates = data[geopointField.name]
-            } else if (geopointField.format === 'object') {
-              feature.geometry.coordinates = [
-                data[geopointField.name]['lon'],
-                data[geopointField.name]['lat']
-              ]
-            } else {
-              console.log('no format is provided for geometry field.')
-            }
-          } else { // now check for default fields
-            const latitudeFieldNames = ['lat','latitude']
-            const longitudeFieldNames = ['lon','longitude']
-            const latField = view.resources[0].schema.fields.find(field => {
-              return latitudeFieldNames.includes(field.name.toLowerCase())
-            })
-            const lonField = view.resources[0].schema.fields.find(field => {
-              return longitudeFieldNames.includes(field.name.toLowerCase())
-            })
-            if (latField && lonField) {
-              feature.geometry.coordinates = [data[lonField.name], data[latField.name]]
-            } else {
-              // No geodata found:
-              throw 'No geo data found'
-            }
-          }
-        }
-        if (view.spec.infobox) {
-          feature.properties.name = eval('`' + view.spec.infobox + '`')
-        }
+        feature.geometry = getGeometryFromRecord(data[geometryField.name])
+        geoData.features.push(feature)
+        return
       }
 
-      geoData.features.push(feature)
+      // Now check for default fields
+      const latitudeFieldNames = ['lat','latitude']
+      const longitudeFieldNames = ['lon','longitude']
+      const latField = view.resources[0].schema.fields.find(field => {
+        return latitudeFieldNames.includes(field.name.toLowerCase())
+      })
+      const lonField = view.resources[0].schema.fields.find(field => {
+        return longitudeFieldNames.includes(field.name.toLowerCase())
+      })
+      if (latField && lonField) {
+        feature.geometry.coordinates = [data[lonField.name], data[latField.name]]
+        geoData.features.push(feature)
+        return
+      }
     })
   }
 
