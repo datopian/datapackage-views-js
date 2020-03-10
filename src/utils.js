@@ -57,6 +57,10 @@ function tableToGeoData(view) {
           console.warn(e)
           return
         }
+      } else if (view.spec.geomField) {
+        feature.geometry = getGeometryFromRecord(data[view.spec.geomField])
+        geoData.features.push(feature)
+        return
       } else {
         // Identify geopoint field based on tableschema
         const geopointField = view.resources[0].schema.fields.find(field => {
