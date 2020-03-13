@@ -19,24 +19,27 @@ export default class Table extends React.Component {
     })
   }
 
-  getFieldObject = (name) => {
-    return this.state.schema.fields
-      ? this.state.schema.fields.find(field => field.name === name)
-      : null
+  getFields = () => {
+    if (this.state.schema) {
+      return this.state.schema.fields
+    }
+    const fields = []
+    for (let key in this.state.data[0]) {
+      fields.push({
+        name: key
+      })
+    }
   }
 
   render() {
     return (
       <ReactTable
         data={this.state.data}
-        columns={Object.keys(this.state.data[0] || {}).map(key => {
+        columns={this.getFields().map(field => {
           return {
-            Header: key,
-            accessor: key,
-            Cell: props => <div className={
-              this.getFieldObject(key)
-                ? this.getFieldObject(key).type
-                : ''}>
+            Header: field.name,
+            accessor: field.name,
+            Cell: props => <div className={field.type || ''}>
               <span>{props.value}</span>
             </div>
           }

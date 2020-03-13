@@ -53,10 +53,18 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "getFieldObject", function (name) {
-      return _this.state.schema.fields ? _this.state.schema.fields.find(function (field) {
-        return field.name === name;
-      }) : null;
+    _defineProperty(_assertThisInitialized(_this), "getFields", function () {
+      if (_this.state.schema) {
+        return _this.state.schema.fields;
+      }
+
+      var fields = [];
+
+      for (var key in _this.state.data[0]) {
+        fields.push({
+          name: key
+        });
+      }
     });
 
     _this.state = {
@@ -69,17 +77,15 @@ function (_React$Component) {
   _createClass(Table, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       return _react.default.createElement(_reactTableV.default, {
         data: this.state.data,
-        columns: Object.keys(this.state.data[0] || {}).map(function (key) {
+        columns: this.getFields().map(function (field) {
           return {
-            Header: key,
-            accessor: key,
+            Header: field.name,
+            accessor: field.name,
             Cell: function Cell(props) {
               return _react.default.createElement("div", {
-                className: _this2.getFieldObject(key) ? _this2.getFieldObject(key).type : ''
+                className: field.type || ''
               }, _react.default.createElement("span", null, props.value));
             }
           };
