@@ -20,7 +20,7 @@ export default class Table extends React.Component {
   }
 
   getFields = () => {
-    if (this.state.schema) {
+    if (this.state.schema && this.state.schema.fields) {
       return this.state.schema.fields
     }
     const fields = []
@@ -29,6 +29,7 @@ export default class Table extends React.Component {
         name: key
       })
     }
+    return fields
   }
 
   render() {

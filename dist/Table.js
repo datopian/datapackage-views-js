@@ -54,7 +54,7 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "getFields", function () {
-      if (_this.state.schema) {
+      if (_this.state.schema && _this.state.schema.fields) {
         return _this.state.schema.fields;
       }
 
@@ -65,6 +65,8 @@ function (_React$Component) {
           name: key
         });
       }
+
+      return fields;
     });
 
     _this.state = {
