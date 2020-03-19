@@ -12,6 +12,10 @@ export default function (props) {
   }
 
   return (
-    <Plot {...props.spec}/>
+    <Plot {...props.spec}
+      layout = { {autosize: true} }
+      style = { {width: "100%", height: "100%"} }
+      useResizeHandler = "true"
+    />
   )
 }
