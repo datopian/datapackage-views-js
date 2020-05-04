@@ -11,8 +11,6 @@ var _reactTableV = _interopRequireDefault(require("react-table-v6"));
 
 require("react-table-v6/react-table.css");
 
-var _reactCsv = require("react-csv");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -83,7 +81,7 @@ function (_React$Component) {
         data: this.state.data,
         columns: this.getFields().map(function (field) {
           return {
-            Header: field.name,
+            Header: field.title || field.name,
             accessor: field.name,
             Cell: function Cell(props) {
               return _react.default.createElement("div", {

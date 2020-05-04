@@ -8,20 +8,12 @@
     "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",
-    "leaflet": "^1.5.1",
-    "plotly.js-basic-dist": "^1.49.2",
     "react": "^16.8.6",
-    "react-csv": "^1.1.1",
     "react-dom": "^16.8.6",
     "react-i18next": "^11.2.7",
-    "react-leaflet": "^2.4.0",
     "react-loader-spinner": "^2.3.0",
-    "react-pdf-js": "^5.1.0",
-    "react-plotly.js": "^2.3.0",
     "react-scripts": "3.0.1",
-    "react-table-v6": "^6.8.6",
-    "react-vega": "4.0.2",
-    "vega-lib": "4.4.0"
+    "react-table-v6": "^6.8.6"
   },
   "scripts": {
     "cosmos": "cosmos",

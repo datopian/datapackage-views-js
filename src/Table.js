@@ -1,7 +1,6 @@
 import React from "react"
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
-import { CSVLink } from "react-csv"
 
 
 export default class Table extends React.Component {
