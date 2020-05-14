@@ -78,7 +78,13 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement(_reactTableV.default, {
-        data: this.state.data,
+        data: this.state.data.map(function (row) {
+          for (var key in row) {
+            row[key] = row[key].toLocaleString();
+          }
+
+          return row;
+        }),
         columns: this.getFields().map(function (field) {
           return {
             Header: field.title || field.name,

@@ -34,7 +34,12 @@ export default class Table extends React.Component {
   render() {
     return (
       <ReactTable
-        data={this.state.data}
+        data={this.state.data.map(row => {
+          for (let key in row) {
+            row[key] = row[key].toLocaleString()
+          }
+          return row
+        })}
         columns={this.getFields().map(field => {
           return {
             Header: field.title || field.name,
