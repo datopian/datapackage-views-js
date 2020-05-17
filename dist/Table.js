@@ -80,7 +80,7 @@ function (_React$Component) {
       return _react.default.createElement(_reactTableV.default, {
         data: this.state.data.map(function (row) {
           for (var key in row) {
-            row[key] = row[key].toLocaleString();
+            row[key] = row[key] && row[key].toLocaleString();
           }
 
           return row;

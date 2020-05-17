@@ -36,7 +36,7 @@ export default class Table extends React.Component {
       <ReactTable
         data={this.state.data.map(row => {
           for (let key in row) {
-            row[key] = row[key].toLocaleString()
+            row[key] = row[key] && row[key].toLocaleString()
           }
           return row
         })}
