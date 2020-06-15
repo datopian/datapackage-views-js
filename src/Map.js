@@ -1,7 +1,6 @@
 import React from 'react'
 import L from 'leaflet'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
-import "./Map.css"
 
 
 // Following is the fix for invalid leaflet assets. Please, check this issue

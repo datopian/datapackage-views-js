@@ -1,8 +1,6 @@
 import "./i18n/i18n"
 import React from "react"
 import Vega from 'react-vega';
-import './index.css'
-import "./App.css"
 import Table from "./Table.js"
 import Map from './Map.js'
 import PdfViewer from './Document.js'
