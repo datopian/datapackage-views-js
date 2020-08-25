@@ -48,7 +48,7 @@ export default class Table extends React.Component {
               } else if (field.name.includes('DK') && row[field.name]) {
                 row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2')
               }
-            } else if (fieldSize) {
+            } else if (fieldSize && row[field.name] !== null) {
               const sizeParts = fieldSize.toString().split('.')
               if (sizeParts[1]) {
                 sizeParts[1] = parseInt(sizeParts[1])
@@ -56,12 +56,12 @@ export default class Table extends React.Component {
               } else {
                 sizeParts[0] = parseInt(sizeParts[0])
                 row[field.name] = row[field.name] && row[field.name].toString().slice(0, sizeParts[0])
-              }
 
-              if (field.type === 'integer') {
-                row[field.name] = parseInt(row[field.name])
-              } else if (field.type === 'number') {
-                row[field.name] = parseFloat(row[field.name])
+                if (field.type === 'integer') {
+                  row[field.name] = parseInt(row[field.name])
+                } else if (field.type === 'number') {
+                  row[field.name] = parseFloat(row[field.name])
+                }
               }
             }
             row[field.name] = row[field.name] && row[field.name].toLocaleString()
