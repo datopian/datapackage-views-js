@@ -51,7 +51,13 @@ export default class Table extends React.Component {
                 row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2')
               } else if (sizeParts[1]) {
                 sizeParts[1] = parseInt(sizeParts[1])
-                row[field.name] = (Math.round(row[field.name] * 100) / 100).toFixed(sizeParts[1])
+                row[field.name] = row[field.name].toLocaleString(
+                  undefined,
+                  {
+                    minimumFractionDigits: sizeParts[1],
+                    maximumFractionDigits: sizeParts[1]
+                  }
+                )
               } else {
                 sizeParts[0] = parseInt(sizeParts[0])
                 row[field.name] = row[field.name] && row[field.name].toString().slice(0, sizeParts[0])
