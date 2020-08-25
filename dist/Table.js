@@ -89,17 +89,14 @@ function (_React$Component) {
           fields.forEach(function (field) {
             var fieldSize = field.size || field.constraints && field.constraints.size;
 
-            if (field.type === 'datetime') {
-              // Format datetime values according to EDS requirements
-              if (field.name.includes('UTC') && row[field.name]) {
-                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})(\+\d{2}:\d{2})*/, '$1 $2Z');
-              } else if (field.name.includes('DK') && row[field.name]) {
-                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2');
-              }
-            } else if (fieldSize && row[field.name] !== null) {
-              var sizeParts = fieldSize.toString().split('.');
+            if (fieldSize && row[field.name] !== null) {
+              var sizeParts = fieldSize.toString().split('.'); // Format datetime values according to EDS requirements
 
-              if (sizeParts[1]) {
+              if (field.name.includes('UTC') && field.type === 'datetime') {
+                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})(\+\d{2}:\d{2})*/, '$1 $2Z');
+              } else if (field.name.includes('DK') && field.type === 'datetime') {
+                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2');
+              } else if (sizeParts[1]) {
                 sizeParts[1] = parseInt(sizeParts[1]);
                 row[field.name] = (Math.round(row[field.name] * 100) / 100).toFixed(sizeParts[1]);
               } else {

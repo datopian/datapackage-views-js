@@ -41,16 +41,15 @@ export default class Table extends React.Component {
           const fields = this.getFields()
           fields.forEach(field => {
             const fieldSize = field.size || field.constraints && field.constraints.size
-            if (field.type === 'datetime') {
-              // Format datetime values according to EDS requirements
-              if (field.name.includes('UTC') && row[field.name]) {
-                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})(\+\d{2}:\d{2})*/, '$1 $2Z')
-              } else if (field.name.includes('DK') && row[field.name]) {
-                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2')
-              }
-            } else if (fieldSize && row[field.name] !== null) {
+            if (fieldSize && row[field.name] !== null) {
               const sizeParts = fieldSize.toString().split('.')
-              if (sizeParts[1]) {
+
+              // Format datetime values according to EDS requirements
+              if (field.name.includes('UTC') && field.type === 'datetime') {
+                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})(\+\d{2}:\d{2})*/, '$1 $2Z')
+              } else if (field.name.includes('DK') && field.type === 'datetime') {
+                row[field.name] = row[field.name].replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}):(\d{2})/, '$1 $2')
+              } else if (sizeParts[1]) {
                 sizeParts[1] = parseInt(sizeParts[1])
                 row[field.name] = (Math.round(row[field.name] * 100) / 100).toFixed(sizeParts[1])
               } else {
