@@ -69,13 +69,14 @@ export default class Table extends React.Component {
 
           return row
         })}
-        columns={this.getFields().map(field => {
+        columns={this.getFields().map((field, index) => {
           return {
             Header: field.title || field.name,
             accessor: field.name,
             Cell: props => <div className={field.type || ''}>
               <span>{props.value}</span>
-            </div>
+            </div>,
+            width: index === 0 ? 130 : undefined
           }
         })}
         getTheadThProps={() => {

@@ -118,7 +118,7 @@ function (_React$Component) {
           });
           return row;
         }),
-        columns: this.getFields().map(function (field) {
+        columns: this.getFields().map(function (field, index) {
           return {
             Header: field.title || field.name,
             accessor: field.name,
@@ -126,7 +126,8 @@ function (_React$Component) {
               return _react.default.createElement("div", {
                 className: field.type || ''
               }, _react.default.createElement("span", null, props.value));
-            }
+            },
+            width: index === 0 ? 130 : undefined
           };
         }),
         getTheadThProps: function getTheadThProps() {
