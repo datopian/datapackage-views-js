@@ -75,7 +75,7 @@ export default class Table extends React.Component {
             Cell: props => <div className={field.type || ''}>
               <span>{props.value}</span>
             </div>,
-            minWidth: index === 0 ? 130 : undefined
+            width: index === 0 && (1280 * 0.8333 - 30) / this.getFields().length < 130 ? 130 : undefined
           }
         })}
         getTheadThProps={() => {

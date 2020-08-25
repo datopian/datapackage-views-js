@@ -124,7 +124,7 @@ function (_React$Component) {
                 className: field.type || ''
               }, _react.default.createElement("span", null, props.value));
             },
-            minWidth: index === 0 ? 130 : undefined
+            width: index === 0 && (1280 * 0.8333 - 30) / _this2.getFields().length < 130 ? 130 : undefined
           };
         }),
         getTheadThProps: function getTheadThProps() {
