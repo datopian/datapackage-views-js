@@ -127,7 +127,7 @@ function (_React$Component) {
                 className: field.type || ''
               }, _react.default.createElement("span", null, props.value));
             },
-            width: index === 0 ? 130 : undefined
+            minWidth: index === 0 ? 130 : undefined
           };
         }),
         getTheadThProps: function getTheadThProps() {
