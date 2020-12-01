@@ -154,6 +154,7 @@ function DataView(props) {
         className: "App"
       }, _react.default.createElement("iframe", {
         src: src,
+        title: "Embedded content",
         width: "100%",
         height: "475px"
       }, t('Your browser doesn\'t support "iframe".')));
