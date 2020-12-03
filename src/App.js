@@ -111,7 +111,7 @@ export function DataView(props) {
       const src = view.page_url || view.resources[0].path
       return (
         <div className="App">
-          <iframe src={src} width="100%" height="475px">
+          <iframe src={src} title="Embedded content" width="100%" height="475px">
             {t('Your browser doesn\'t support "iframe".')}
           </iframe>
         </div>
