@@ -163,6 +163,7 @@ function DataView(props) {
         className: "App"
       }, _react.default.createElement("p", null, t('Data view unavailable.')), _react.default.createElement("a", {
         href: view.resources[0].path,
+        "aria-label": view.resources[0].title,
         className: "text-primary font-bold"
       }, t('Download the data.')));
     } else {
