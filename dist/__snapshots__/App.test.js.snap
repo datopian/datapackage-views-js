@@ -589,6 +589,7 @@ exports[`renders an iframe for web spec type 1`] = `
   <iframe
     height="475px"
     src="http://example.com"
+    title="Embedded content"
     width="100%"
   >
     Your browser doesn't support "iframe".

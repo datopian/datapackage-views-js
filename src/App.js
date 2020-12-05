@@ -120,7 +120,7 @@ export function DataView(props) {
       return (
         <div className="App">
           <p>{t('Data view unavailable.')}</p>
-          <a href={view.resources[0].path} className="text-primary font-bold">{t('Download the data.')}</a>
+          <a href={view.resources[0].path} aria-label={t('Download ') + view.resources[0].title + t(' data')} className="text-primary font-bold">{t('Download the data.')}</a>
         </div>
       )
     } else {
