@@ -47,7 +47,7 @@ var PdfViewer = function PdfViewer(props) {
       }
     }, _react.default.createElement("a", {
       href: "#previous"
-    }, _react.default.createElement("i", {
+    }, _react.default.createElement("span", {
       className: "arrow-left"
     }), " Previous"));
 
@@ -56,7 +56,7 @@ var PdfViewer = function PdfViewer(props) {
         className: "previous disabled"
       }, _react.default.createElement("a", {
         href: "#previous"
-      }, _react.default.createElement("i", {
+      }, _react.default.createElement("span", {
         className: "arrow-left"
       }), " Previous"));
     }
@@ -68,7 +68,7 @@ var PdfViewer = function PdfViewer(props) {
       }
     }, _react.default.createElement("a", {
       href: "#next"
-    }, "Next ", _react.default.createElement("i", {
+    }, "Next ", _react.default.createElement("span", {
       className: "arrow-right"
     })));
 
@@ -77,12 +77,14 @@ var PdfViewer = function PdfViewer(props) {
         className: "next disabled"
       }, _react.default.createElement("a", {
         href: "#next"
-      }, "Next ", _react.default.createElement("i", {
+      }, "Next ", _react.default.createElement("span", {
         className: "arrow-right"
       })));
     }
 
-    return _react.default.createElement("nav", null, _react.default.createElement("ul", {
+    return _react.default.createElement("nav", {
+      "aria-label": "Navigate pages: Previous/Next"
+    }, _react.default.createElement("ul", {
       className: "pager"
     }, previousButton, nextButton));
   };
