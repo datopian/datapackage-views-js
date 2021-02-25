@@ -39,7 +39,8 @@ export default class Table extends React.Component {
         columns={this.getFields().map(field => {
           return {
             Header: field.name,
-            accessor: field.name,
+            id: field.name,
+            accessor: val => val[field.name],
             Cell: props => <div className={field.type || ''}>
               <span>{props.value}</span>
             </div>
