@@ -84,7 +84,10 @@ function (_React$Component) {
         columns: this.getFields().map(function (field) {
           return {
             Header: field.name,
-            accessor: field.name,
+            id: field.name,
+            accessor: function accessor(val) {
+              return val[field.name];
+            },
             Cell: function Cell(props) {
               return _react.default.createElement("div", {
                 className: field.type || ''
