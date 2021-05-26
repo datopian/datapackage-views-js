@@ -4,7 +4,7 @@ import { initReactI18next } from "react-i18next";
 import en from './locales/en/translation.json'
 import da from './locales/da/translation.json'
 import fr from './locales/fr/translation.json'
-import pt_BR from '.locales/pt_BR/translation.json'
+import pt_BR from './locales/pt_BR/translation.json'
 
 i18n
   .use(LanguageDetector)
