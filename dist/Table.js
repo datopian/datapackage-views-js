@@ -70,7 +70,7 @@ function (_React$Component) {
     });
 
     _this.state = {
-      data: _this.props.data,
+      data: _this.props.data || [],
       schema: Object.assign({}, _this.props.schema)
     };
     return _this;
@@ -104,9 +104,9 @@ function (_React$Component) {
           };
         },
         showPagination: false,
-        defaultPageSize: 100,
+        defaultPageSize: this.state.data.length,
         showPageSizeOptions: false,
-        minRows: 10
+        minRows: this.state.data.length
       });
     }
   }]);
