@@ -8,7 +8,7 @@ export default class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data,
+      data: this.props.data || [],
       schema: Object.assign({}, this.props.schema)
     };
   }
