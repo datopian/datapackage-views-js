@@ -8,7 +8,7 @@ export default class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data,
+      data: this.props.data || [],
       schema: Object.assign({}, this.props.schema)
     };
   }
@@ -50,9 +50,9 @@ export default class Table extends React.Component {
           return {style: {"wordWrap": "break-word", "whiteSpace": "initial"}}
         }}
         showPagination={false}
-        defaultPageSize={100}
+        defaultPageSize={this.state.data.length}
         showPageSizeOptions={false}
-        minRows={10}
+        minRows={this.state.data.length}
       />
     )
   }
