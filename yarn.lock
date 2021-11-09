@@ -3496,9 +3496,9 @@ data-urls@^1.0.0, data-urls@^1.1.0:
 
 "datapackage-render@git+https://github.com/frictionlessdata/datapackage-render-js.git":
   version "0.3.7"
-  resolved "git+https://github.com/frictionlessdata/datapackage-render-js.git#a58a5714f748d9a8fca6ebb47372f2d17f5f5b77"
+  resolved "git+https://github.com/frictionlessdata/datapackage-render-js.git#646b85eaccbb6961d5a734c54fbb00a4c9923b5e"
   dependencies:
-    lodash "^4.0.0"
+    lodash "^4.17.21"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -6505,9 +6505,14 @@ lodash.uniq@^4.5.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
-lodash@^4.0.0, lodash@^4.17.13:
+lodash@^4.17.13:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-driver@^1.2.7:
   version "1.2.7"
