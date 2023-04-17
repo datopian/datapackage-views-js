@@ -61,7 +61,7 @@ export function DataView(props) {
           </div>
         )
       } catch (e) {
-        return (<div className={e}></div>)
+        return (<div className='dv-no-data'>Data not found to render map.</div>)
       }
     } else if (view.specType === 'document') {
       return (
