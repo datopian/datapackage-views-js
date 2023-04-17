@@ -90,8 +90,8 @@ function DataView(props) {
         }));
       } catch (e) {
         return _react.default.createElement("div", {
-          className: e
-        });
+          className: "dv-no-data"
+        }, "No data found to render map.");
       }
     } else if (view.specType === 'document') {
       return _react.default.createElement("div", {
