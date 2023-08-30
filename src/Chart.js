@@ -11,9 +11,15 @@ export default function (props) {
     props.spec.config = Object.assign(props.spec.config || {}, {displaylogo: false});
   }
 
+
   return (
     <Plot {...props.spec}
-      layout = { {autosize: true} }
+      layout = { {
+          autosize: true,
+          xaxis: {automargin: true},
+          yaxis: {automargin: true,  tickangle: -20
+          }
+        } }
       style = { {width: "100%", height: "100%"} }
       useResizeHandler = "true"
     />

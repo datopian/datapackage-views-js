@@ -26,7 +26,14 @@ function _default(props) {
 
   return _react.default.createElement(Plot, _extends({}, props.spec, {
     layout: {
-      autosize: true
+      autosize: true,
+      xaxis: {
+        automargin: true
+      },
+      yaxis: {
+        automargin: true,
+        tickangle: -20
+      }
     },
     style: {
       width: "100%",
