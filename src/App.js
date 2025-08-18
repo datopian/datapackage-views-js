@@ -8,7 +8,7 @@ import Map from './Map.js'
 import PdfViewer from './Document.js'
 import Chart from './Chart.js'
 import {getResourceCachedValues, simpleToPlotly, plotlyToPlotly, vegaToVega} from 'datapackage-render'
-import Loader from 'react-loader-spinner'
+import { Grid } from 'react-loader-spinner'
 import tableToGeoData from './utils'
 import {useTranslation} from "react-i18next"
 
@@ -19,8 +19,7 @@ export function DataView(props) {
   if (props.loading) {
     return (
       <div className="App">
-        <Loader
-           type="Grid"
+        <Grid
            color="#D3D3D3"
            height="50"
            width="50"
@@ -126,8 +125,7 @@ export function DataView(props) {
     } else {
       return (
         <div className="App">
-          <Loader
-             type="Grid"
+          <Grid
              color="#D3D3D3"
              height="50"
              width="50"

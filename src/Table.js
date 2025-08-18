@@ -1,59 +1,85 @@
-import React from "react"
-import ReactTable from 'react-table-v6'
-import 'react-table-v6/react-table.css'
-import { CSVLink } from "react-csv"
+import React, { useState, useMemo } from "react"
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+  createColumnHelper,
+} from '@tanstack/react-table'
+const columnHelper = createColumnHelper()
 
+export default function Table({ data = [], schema = {} }) {
+  const [tableData, setTableData] = useState(data)
 
-export default class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: this.props.data || [],
-      schema: Object.assign({}, this.props.schema)
-    };
-  }
-
-  updateData = (newData) => {
-    this.setState({
-      data: newData
-    })
-  }
-
-  getFields = () => {
-    if (this.state.schema && this.state.schema.fields) {
-      return this.state.schema.fields
+  const getFields = () => {
+    if (schema && schema.fields) {
+      return schema.fields
     }
     const fields = []
-    for (let key in this.state.data[0]) {
-      fields.push({
-        name: key
-      })
+    if (tableData.length > 0) {
+      for (let key in tableData[0]) {
+        fields.push({
+          name: key
+        })
+      }
     }
     return fields
   }
 
-  render() {
-    return (
-      <ReactTable
-        data={this.state.data}
-        columns={this.getFields().map(field => {
-          return {
-            Header: field.name,
-            id: field.name,
-            accessor: val => val[field.name],
-            Cell: props => <div className={field.type || ''}>
-              <span>{props.value}</span>
-            </div>
-          }
-        })}
-        getTheadThProps={() => {
-          return {style: {"wordWrap": "break-word", "whiteSpace": "initial"}}
-        }}
-        showPagination={false}
-        defaultPageSize={this.state.data.length}
-        showPageSizeOptions={false}
-        minRows={this.state.data.length}
-      />
+  const columns = useMemo(() => {
+    return getFields().map(field => 
+      columnHelper.accessor(field.name, {
+        header: field.name,
+        id: field.name,
+        cell: info => (
+          <div className={field.type || ''}>
+            <span>{info.getValue()}</span>
+          </div>
+        )
+      })
     )
-  }
+  }, [tableData, schema, getFields])
+
+  const table = useReactTable({
+    data: tableData,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full">
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th
+                  key={header.id}
+                  style={{ wordWrap: "break-word", whiteSpace: "initial" }}
+                  className="px-4 py-2 text-left"
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id} className="px-4 py-2 border-b">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
 }
