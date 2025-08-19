@@ -21,6 +21,7 @@
     "react-pdf-js": "^5.1.0",
     "react-plotly.js": "^2.6.0",
     "react-scripts": "4.0.3",
+    "react-table-v6": "^6.8.6",
     "react-vega": "4.0.2",
     "vega-lib": "^4.4.0"
   },
