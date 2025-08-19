@@ -2,50 +2,49 @@
   "name": "@datopian/datapackage-views-js",
   "version": "1.4.5",
   "private": false,
+  "license": "MIT",
   "main": "/dist/App.js",
   "module": "/dist/App.js",
   "dependencies": {
-    "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git",
+    "@tanstack/react-table": "^8.20.1",
+    "datapackage-render": "git+https://github.com/frictionlessdata/datapackage-render-js.git#646b85eaccbb6961d5a734c54fbb00a4c9923b5e",
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",
-    "leaflet": "^1.5.1",
-    "plotly.js-basic-dist": "^1.49.2",
-    "react": "^16.8.6",
-    "react-csv": "^1.1.1",
-    "react-dom": "^16.8.6",
+    "leaflet": "^1.9.4",
+    "plotly.js-basic-dist": "^2.35.0",
+    "react": "^18.3.1",
+    "react-csv": "^2.2.2",
+    "react-dom": "^18.3.1",
     "react-i18next": "^11.2.7",
     "react-leaflet": "^2.4.0",
-    "react-loader-spinner": "^2.3.0",
+    "react-loader-spinner": "^6.1.6",
     "react-pdf-js": "^5.1.0",
-    "react-plotly.js": "^2.3.0",
-    "react-scripts": "3.0.1",
+    "react-plotly.js": "^2.6.0",
+    "react-scripts": "4.0.3",
     "react-table-v6": "^6.8.6",
     "react-vega": "4.0.2",
-    "vega-lib": "4.4.0"
+    "vega-lib": "^4.4.0"
   },
   "scripts": {
     "cosmos": "cosmos",
     "cosmos:export": "cosmos-export",
     "watch:css": "postcss src/stylesheets/index.css -o src/index.css -w",
     "build:css": "postcss src/stylesheets/index.css -o src/index.css",
-    "start": "npm run watch:css & react-scripts start",
+    "start": "NODE_OPTIONS=\"--openssl-legacy-provider\" react-scripts start",
     "dev": "npm run watch:css & react-scripts start & npm run cosmos",
-    "build": "npm run build:css && react-scripts build",
+    "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" react-scripts build",
     "build:non-optimized": "node ./build-non-split.js && mv build/static/js/*.js dist/js/main.js",
     "build:package": "rm -rf dist/ && mkdir dist && NODE_ENV=production npx babel src/ -d dist/ --copy-files",
     "coverage": "cat coverage/lcov.info | coveralls",
-    "test": "rescripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js && npm run coverage",
-    "test:watch": "rescripts test",
-    "test:only": "rescripts test --watchAll=false",
+    "test": "react-scripts test --coverage --watchAll=false --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/serviceWorker.js && npm run coverage",
+    "test:watch": "react-scripts test",
+    "test:only": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "babel": {
     "presets": [
       "@babel/preset-env",
       "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
     ]
   },
   "eslintConfig": {
@@ -64,19 +63,18 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "@rescripts/cli": "^0.0.11",
-    "@testing-library/react": "^8.0.4",
-    "autoprefixer": "^9.6.0",
-    "coveralls": "^3.0.4",
-    "jest-dom": "^3.5.0",
-    "postcss-cli": "^6.1.2",
-    "react-cosmos": "^4.8.1",
-    "rewire": "^4.0.1",
-    "tailwindcss": "^1.0.4"
+    "@babel/cli": "^7.25.0",
+    "@babel/core": "^7.25.0",
+    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-react": "^7.24.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "autoprefixer": "^9.8.6",
+    "coveralls": "^3.1.1",
+    "postcss-cli": "^8.3.1",
+    "react-cosmos": "^6.2.0",
+    "rewire": "^7.0.0",
+    "tailwindcss": "^2.2.19"
   }
 }
