@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react"
+import React, { useMemo } from "react"
 import {
   useReactTable,
   getCoreRowModel,
@@ -8,15 +8,14 @@ import {
 const columnHelper = createColumnHelper()
 
 export default function Table({ data = [], schema = {} }) {
-  const [tableData, setTableData] = useState(data)
 
   const getFields = () => {
     if (schema && schema.fields) {
       return schema.fields
     }
     const fields = []
-    if (tableData.length > 0) {
-      for (let key in tableData[0]) {
+    if (data.length > 0) {
+      for (let key in data[0]) {
         fields.push({
           name: key
         })
@@ -37,10 +36,10 @@ export default function Table({ data = [], schema = {} }) {
         )
       })
     )
-  }, [tableData, schema, getFields])
+  }, [data, schema])
 
   const table = useReactTable({
-    data: tableData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
